@@ -1,6 +1,6 @@
-# hqweb3
+# phone
 
-> 黄雀商场第三版vux
+> 手机壳制作项目
 
 ## Build Setup
 
