@@ -21,6 +21,7 @@
 				<x-icon type="ios-personadd-outline" size="20" slot="icon"></x-icon>
 			</cell>
 		</group>
+		<button @click="ck">点击登录</button>
 	</div>
 </template>
 
@@ -51,6 +52,11 @@
 				.catch(function(err) {
 					//console.log(err);
 				});
+		},
+		methods:{
+			ck(){
+				this.$router.push({path:'/login/login'})
+			}
 		}
 	}
 </script>
