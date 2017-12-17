@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h2>分类页面</h2>
 		<ul>
 			<li v-for="item in mes" :key="item.age">{{item.age}}</li>
 		</ul>
@@ -24,8 +25,7 @@
 		},
 		methods:{
 			ck(){
-				this.$set(this.mes ,0,{name:'angle',age:26})
-				console.log(this.mes)
+				this.$router.push('sortList')
 			}
 		}
 	}

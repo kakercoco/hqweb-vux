@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import axios from '../libs/axios.js'
+	import axios from '../../libs/axios.js'
 	import { Blur, Group, Cell  } from 'vux'
 	export default {
 		name: 'self',
