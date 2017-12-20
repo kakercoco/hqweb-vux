@@ -5,16 +5,15 @@
 </template>
 
 <script>
-	//import Vue from "vue"
 	export default{
-		name:'car',
-		data(){
-			return {
-				
-			}
-		},
-		methods:{
-		}
+	  name: 'car',
+	  data () {
+    return {
+	
+    }
+  },
+	  methods: {
+  }
 	}
 </script>
 

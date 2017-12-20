@@ -63,35 +63,33 @@
 </template>
 
 <script>
-	import axios from '../../libs/axios.js'
-	import { CheckIcon } from 'vux'
-	import { Swipeout, SwipeoutItem, SwipeoutButton } from 'vux'
-	import { Group, XNumber } from 'vux'
+	// import axios from '../../libs/axios.js'
+	import { Swipeout, SwipeoutItem, SwipeoutButton, CheckIcon, Group, XNumber } from 'vux'
 	export default {
-		name: 'car',
-		components: {
-			CheckIcon,
-			Swipeout,
-			SwipeoutItem,
-			SwipeoutButton,
-			Group,
-			XNumber
-		},
-		data() {
-			return {
-				delete_show: true, //编辑全部
-				demo1: false,
-				value: 1,
-			}
-		},
-		methods: {
-			ck() {
-				console.log(aa)
-			},
-			change(val) {
-				console.log("数量发生变化" + val)
-			}
-		}
+	  name: 'car',
+	  components: {
+	    CheckIcon,
+	    Swipeout,
+	    SwipeoutItem,
+	    SwipeoutButton,
+	    Group,
+	    XNumber
+  },
+	  data () {
+    return {
+	      delete_show: true, // 编辑全部
+	      demo1: false,
+	      value: 1
+    }
+  },
+	  methods: {
+	    ck () {
+	      // console.log(aa)
+    },
+	    change (val) {
+	      console.log('数量发生变化' + val)
+    }
+  }
 	}
 </script>
 

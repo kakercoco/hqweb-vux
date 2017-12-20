@@ -7,8 +7,6 @@ import App from './App'
 
 Vue.use(require('vue-wechat-title'))
 
-
-
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false

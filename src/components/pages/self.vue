@@ -78,46 +78,41 @@
 
 <script>
 	import axios from '../../libs/axios.js'
-	import { Blur, Group, Cell } from 'vux'
-	import { Grid, GridItem } from 'vux'
-	import { Rater } from 'vux'
+	import { Blur, Group, Cell, Grid, GridItem, Rater } from 'vux'
 	export default {
-		name: 'self',
-		components: {
-			Blur,
-			Group,
-			Cell,
-			Grid,
-			GridItem,
-			Rater,
-		},
-		data() {
-			return {
-				name: 'kaker',
-				url: 'https://o3e85j0cv.qnssl.com/hot-chocolate-1068703__340.jpg',
-				data: {},
-				star: [],
-				stars:3.7
-			}
-		},
-		created() {
-			axios.get('shop/v2/home')
-				.then(
-					(data) => {
-						console.log(data)
-						this.data = data.data
-					},
-					(err) => {
-
-					}
-				)
-		},
-		methods: {
-			ck: function() {
-				console.log(this.$router)
-				this.$router.push('/login/login');
-			}
-		}
+	  name: 'self',
+	  components: {
+	    Blur,
+	    Group,
+	    Cell,
+	    Grid,
+	    GridItem,
+	    Rater
+  },
+	  data () {
+	    return {
+	      name: 'kaker',
+	      url: 'https://o3e85j0cv.qnssl.com/hot-chocolate-1068703__340.jpg',
+	      data: {},
+	      star: [],
+	      stars: 3.7
+    }
+  },
+	  created () {
+	    axios.get('shop/v2/home')
+        .then(
+         (data) => {
+	           console.log(data)
+	           this.data = data.data
+         }
+	)
+  },
+	  methods: {
+	    ck: function () {
+	      console.log(this.$router)
+	      this.$router.push('/login/login')
+	    }
+  }
 	}
 </script>
 

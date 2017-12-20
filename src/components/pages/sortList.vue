@@ -55,54 +55,53 @@
 <script>
 	import axios from '../../libs/axios'
 	export default {
-		name: 'sort',
-		data() {
-			return {
-				minNum: '', //价格区间        最小值
-				maxNum: '', //价格区间     最大值
-				zhFlag: true, //整合
-				xLFlag: false, //销量
-				jGFlag: false, //价格
-				sXFlag: false, //筛选
-				jGstatus: false, //false 升序排序  true 降序排序
-				List: [], //商品列表
-				brandsList: [], //筛选中的品牌列表
-				specList: [], //筛选中的属性列表
-				brandId: 0, //品牌id为零
-				specArr: [], //属性id
-				specNum: 0 //属性个数
-			}
-		},
-		created() {
-			console.log(this.$route.params)
-			let params = {
-				car_id: this.$route.params,
-				station_id: 1
-			}
-			axios.get('shop/v2/category/goodslist', {
-					params
-				})
-				.then(
-					(data) => {
-						console.log(data)
-						this.List = data.data.goods_info.data;
-						this.brandsList = data.data.brands_list;
-						this.specList = data.data.spec_list;
-						this.specNum = data.data.spec_list.length;
-					},
-					(err) => {
-						console.log(err)
-					}
-				)
-		},
-		methods: {
-			ck() {
-				//console.log(this.$route.params.cat_id)
-			}
-		},
-		watch: {
-			'$route': 'ck'
-		}
+	  name: 'sort',
+	  data () {
+	    return {
+	      minNum: '', // 价格区间        最小值
+	      maxNum: '', // 价格区间     最大值
+	      zhFlag: true, // 整合
+	      xLFlag: false, // 销量
+	      jGFlag: false, // 价格
+	      sXFlag: false, // 筛选
+	      jGstatus: false, // false 升序排序  true 降序排序
+	      List: [], // 商品列表
+	      brandsList: [], // 筛选中的品牌列表
+	      specList: [], // 筛选中的属性列表
+	      brandId: 0, // 品牌id为零
+	      specArr: [], // 属性id
+	      specNum: 0 // 属性个数
+    }
+  },
+	  created () {
+	    console.log(this.$route.params)
+	    let params = {
+	      car_id: this.$route.params,
+	      station_id: 1
+    }
+	    axios.get('shop/v2/category/goodslist', {
+	      params
+    })
+	  .then(
+	    (data) => {
+	      console.log(data)
+	      this.List = data.data.goods_info.data
+	      this.brandsList = data.data.brands_list
+	      this.specList = data.data.spec_list
+	      this.specNum = data.data.spec_list.length
+    },
+	   (err) => {
+     console.log(err)
+   }
+   )
+  },
+	  methods: {
+	    ck () {
+    }
+  },
+	  watch: {
+	    '$route': 'ck'
+  }
 	}
 </script>
 

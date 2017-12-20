@@ -11,32 +11,31 @@
 </template>
 
 <script>
-	//import Vue from "vue"
-	export default{
-		name:'car',
-		data(){
-			return {
-				mes:[{
-					name:'kaker',
-					age:18
-				},{
-					name:'eills',
-					age:30
-				}]
-			}
-		},
-		methods:{
-			ck(){
-				this.$router.push({path:'/login/findPassword'})
-			},
-			cks(){
-				this.$router.push({path:'/login/setPassword'})
-			},
-			ckss(){
-				this.$router.push({path:'/login/register'})
-			}
-		}
-	}
+  export default{
+    name: 'car',
+    data () {
+      return {
+        mes: [{
+          name: 'kaker',
+          age: 18
+        }, {
+          name: 'eills',
+          age: 30
+        }]
+      }
+    },
+    methods: {
+      ck () {
+        this.$router.push({path: '/login/findPassword'})
+      },
+      cks () {
+        this.$router.push({path: '/login/setPassword'})
+      },
+      ckss () {
+        this.$router.push({path: '/login/register'})
+      }
+    }
+  }
 </script>
 
 <style>

@@ -30,11 +30,11 @@
 	import { Tabbar, TabbarItem } from 'vux'
 
 	export default {
-		name: 'home',
-		components: {
-			Tabbar,
-			TabbarItem
-		}
+	  name: 'home',
+	  components: {
+	    Tabbar,
+	    TabbarItem
+  }
 	}
 </script>
 

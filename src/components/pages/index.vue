@@ -494,81 +494,80 @@
 </template>
 
 <script>
-	import { Swiper, SwiperItem } from 'vux'
-	import { Grid, GridItem } from 'vux'
-	import { Marquee, MarqueeItem } from 'vux'
+	import { Swiper, SwiperItem, Grid, GridItem, Marquee, MarqueeItem } from 'vux'
 	import axios from '../../libs/axios'
 	export default {
-		name: 'home',
-		components: {
-			Swiper,
-			SwiperItem,
-			Grid,
-			GridItem,
-			Marquee, MarqueeItem,
-		},
-		data() {
-			return {
-				name: 'kaker',
-				tabShow: 0,
-				banner_list: [{ //轮播图数据
-					url: 'javascript:',
-					img: 'https://hqwell.net/images/banner3.jpg',
-					title: '送你一朵fua'
-				}, {
-					url: 'javascript:',
-					img: 'https://hqwell.net/images/banner.png',
-					title: '送你一次旅行',
-				}],
-				newsList: [{ //文字滚动数据
-					url: 'javascript:',
-					title: '选对过冬被，睡好这辈子'
-				}, {
-					url: 'javascript:',
-					title: '黄雀秋品首尔风尚'
-				}, {
-					url: 'javascript:',
-					title: '黄雀地标商品，民俗风韵之窗'
-				}, {
-					url: 'javascript:',
-					title: '民俗风韵之窗'
-				}],
-				groupList: [],	//特惠组合列表
-				cardList:[{		//卡片列表
-					img:"https://hqwell.net/images/card_banner.png"
-				},{		
-					img:"https://hqwell.net/images/card_banner2.png"
-				},{		
-					img:"https://hqwell.net/images/card_banner3.png"
-				}]
-			}
-		},
-		created() {
-			//			let kb = {
-			//				"station_id": 8,
-			//				"type": 0,
-			//				"cat_id": 1
-			//			}
-			//			axios.get('shop/v2/articles/list', {
-			//					params: kb
-			//				})
-			//				.then(
-			//					(data) => {
-			//						console.log(data)
-			//						this.newsList = data.data
-			//						console.log(this.newsList)
-			//					},
-			//					(err) => {
-			//						console.log(err)
-			//					}
-			//				)
-		},
-		mounted() {
+	  name: 'home',
+	  components: {
+	    Swiper,
+	    SwiperItem,
+	    Grid,
+	    GridItem,
+	    Marquee,
+    MarqueeItem
+  },
+	  data () {
+    return {
+	      name: 'kaker',
+	      tabShow: 0,
+	      banner_list: [{ // 轮播图数据
+	        url: 'javascript:',
+	        img: 'https://hqwell.net/images/banner3.jpg',
+	        title: '送你一朵fua'
+      }, {
+	        url: 'javascript:',
+	        img: 'https://hqwell.net/images/banner.png',
+	        title: '送你一次旅行'
+      }],
+	      newsList: [{ // 文字滚动数据
+	        url: 'javascript:',
+	        title: '选对过冬被，睡好这辈子'
+      }, {
+	        url: 'javascript:',
+	        title: '黄雀秋品首尔风尚'
+      }, {
+	        url: 'javascript:',
+	        title: '黄雀地标商品，民俗风韵之窗'
+      }, {
+	        url: 'javascript:',
+	        title: '民俗风韵之窗'
+      }],
+	      groupList: [], // 特惠组合列表
+	      cardList: [{  // 卡片列表
+	        img: 'https://hqwell.net/images/card_banner.png'
+      }, {
+	        img: 'https://hqwell.net/images/card_banner2.png'
+      }, {
+	        img: 'https://hqwell.net/images/card_banner3.png'
+      }]
+    }
+  },
+	  created () {
+	    let kb = {
+	      'station_id': 8,
+	      'type': 0,
+	      'cat_id': 1
+	    }
+	    axios.get('shop/v2/articles/list', {
+	      params: kb
+    })
+	   .then(
+         (data) => {
+           console.log(data)
+	           this.newsList = data.data
+	           console.log(this.newsList)
+         },
+	      (err) => {
+	        console.log(err)
+	      }
+	)
+  },
+	  mounted () {
 
-		},
-		methods: {
+  },
+	  methods: {
 
-		}
+  }
 	}
 </script>
 

@@ -36,69 +36,69 @@
 <script>
 	import axios from '../../libs/axios'
 	export default {
-		name: 'sort',
-		data() {
-			return {
-				onFlag: false,
-				ind: '',
-				sortList: [], //一级分类
-				sortList2: [] //二三级分类
-			}
-		},
-		created() {
-			axios.get('shop/v2/category/first')
-				.then(
-					(data) => {
-						console.log(data)
-						this.sortList = data.data.categories
-						this.ind = data.data.categories[0].cat_name
-						let cat_id = data.data.categories[0].cat_id
-						let params = {
-							cat_id: cat_id
-						}
-						axios.get('shop/v2/category/list', {
-								params
-							})
-							.then(
-								(data) => {
-									console.log(data)
-									this.sortList2 = data.data
-								},
-								(err) => {
-									console.log(err)
-								}
-							)
-					},
-					(err) => {
-						console.log(err)
-					}
-				)
-		},
-		methods: {
-			//伪造跳转锚点      获取二三级分类
-			changeBgc(name, cat_id) {
-				let params = {
-					"cat_id": cat_id
-				};
-				axios.get("shop/v2/category/list", {
-						params
-					})
-					.then(
-						(data) => {
-							this.sortList2 = data.data
-							console.log(data.data)
-						},
-						(err) => {
-							console.log(err)
-						}
-					)
-				this.ind = name;
-			},
-			sanjicat: function(cat_id) { //跳转到商品列表
-				//5 要改回来得到
-				window.location.href = 'sort_search.html?cat_id=' + cat_id;
-			}
-		}
+	  name: 'sort',
+	  data () {
+	    return {
+	      onFlag: false,
+	      ind: '',
+	      sortList: [], // 一级分类
+	      sortList2: [] // 二三级分类
+    }
+  },
+	  created () {
+	    axios.get('shop/v2/category/first')
+       .then(
+        (data) => {
+	          console.log(data)
+	          this.sortList = data.data.categories
+	          this.ind = data.data.categories[0].cat_name
+	          let catId = data.data.categories[0].cat_id
+	          let params = {
+	            catId: catId
+          }
+          axios.get('shop/v2/category/list', {
+            params
+          })
+	        .then(
+          (data) => {
+	            console.log(data)
+	            this.sortList2 = data.data
+          },
+     (err) => {
+	       console.log(err)
+     }
+	)
+        },
+(err) => {
+	  console.log(err)
+	}
+)
+  },
+	  methods: {
+// 伪造跳转锚点      获取二三级分类
+	    changeBgc (name, catId) {
+	      let params = {
+	        'cat_id': catId
+      }
+	      axios.get('shop/v2/category/list', {
+	        params
+      })
+        .then(
+         (data) => {
+	           this.sortList2 = data.data
+	           console.log(data.data)
+         },
+	       (err) => {
+	         console.log(err)
+       }
+	)
+	      this.ind = name
+	    },
+	    sanjicat: function (catId) { // 跳转到商品列表
+	// 5 要改回来得到
+	      window.location.href = 'sort_search.html?cat_id=' + catId
+	    }
+  }
 	}
 </script>
 

@@ -5,19 +5,19 @@
 </template>
 
 <script>
-	//import Vue from "vue"
+	// import Vue from "vue"
 	export default{
-		name:'car',
-		data(){
-			return {
-				
-			}
-		},
-		methods:{
-			ck(){
-				
-			}
-		}
+	  name: 'car',
+	  data () {
+    return {
+	
+    }
+  },
+	  methods: {
+	    ck () {
+	
+    }
+  }
 	}
 </script>
 

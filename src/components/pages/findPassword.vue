@@ -9,25 +9,25 @@
 </template>
 
 <script>
-	//import Vue from "vue"
+	// import Vue from "vue"
 	export default{
-		name:'car',
-		data(){
-			return {
-				mes:[{
-					name:'kaker',
-					age:18
-				},{
-					name:'eills',
-					age:30
-				}]
-			}
-		},
-		methods:{
-			ck(){
-				this.$router.push({path:'login/setPassword'})
-			}
-		}
+	  name: 'car',
+	  data () {
+    return {
+	      mes: [{
+	        name: 'kaker',
+	        age: 18
+      }, {
+	        name: 'eills',
+	        age: 30
+      }]
+    }
+  },
+	  methods: {
+	    ck () {
+	      this.$router.push({path: 'login/setPassword'})
+    }
+  }
 	}
 </script>
 
