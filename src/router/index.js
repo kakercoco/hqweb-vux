@@ -39,7 +39,7 @@ let router = new Router({
 				title: '商品分类'
 			}
 		}, { //二级分类
-			path: 'sortList',
+			path: 'sortList/:cat_id',
 			name: 'sortList',
 			component: sortList,
 			meta: {

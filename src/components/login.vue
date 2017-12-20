@@ -10,13 +10,7 @@
 		name:'car',
 		data(){
 			return {
-				mes:[{
-					name:'kaker',
-					age:18
-				},{
-					name:'eills',
-					age:30
-				}]
+				
 			}
 		},
 		methods:{

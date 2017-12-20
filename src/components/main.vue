@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<div class="main">
 		<router-view></router-view>
-		<tabbar>
+		<tabbar style="position: fixed;">
 			<tabbar-item link='/main/index'>
 				<img slot="icon" src="https://hqwell.net/images/home.png">
 				<img slot="icon-active" src="https://hqwell.net/images/home2.png">
@@ -41,5 +41,8 @@
 <style>
 	.weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__icon > i, .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
 		color: #000 !important;
+	}
+	.main{
+		padding-bottom: 55px;
 	}
 </style>

@@ -32,13 +32,16 @@
 		box-sizing: border-box;
 	}
 	body {
-		background-color: #fbf9fe;
+		background-color: #f3f3f3;
 		font-size: 0.14rem;
+		color: #666;
 	}
 	li {
 		list-style: none;
 	}
-	
+	i,em{
+		font-style: normal;
+	}
 	a {
 		text-decoration: none;
 		color: #333;
@@ -96,5 +99,8 @@
 	}
 	.c-fff{
 		color: #fff;
+	}
+	.weui-cells{
+		margin-top: 0.1rem !important;
 	}
 </style>
