@@ -34,7 +34,7 @@
 	body {
 		background-color: #f3f3f3;
 		font-size: 0.14rem;
-		color: #666;
+		color: #333;
 	}
 	li {
 		list-style: none;
@@ -102,5 +102,8 @@
 	}
 	.weui-cells{
 		margin-top: 0.1rem !important;
+	}
+	.weui-input{
+		font-size: 0.125rem!important;
 	}
 </style>

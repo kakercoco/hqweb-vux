@@ -10,9 +10,11 @@ import produce from '@/components/pages/produce'
 import login from '@/components/login'
 import loginIndex from '@/components/pages/login'
 import findPassword from '@/components/pages/findPassword'
+import findPasswordCode from '@/components/pages/findPasswordCode'
 import setPassword from '@/components/pages/setPassword'
 import bindPhone from '@/components/pages/bindPhone'
 import register from '@/components/pages/register'
+import registerError from '@/components/pages/registerError'
 
 Vue.use(Router)
 let router = new Router({
@@ -85,6 +87,13 @@ let router = new Router({
       meta: {
         title: '找回密码'
       }
+    }, {  // 手机切換密碼
+      path: 'findPasswordCode',
+      name: 'findPasswordCode',
+      component: findPasswordCode,
+      meta: {
+        title: '找回密码'
+      }
     }, { // 设置密码
       path: 'setPassword',
       name: 'setPassword',
@@ -105,6 +114,13 @@ let router = new Router({
       component: register,
       meta: {
         title: '手机注册'
+      }
+    }, {  // 手机注册失败
+      path: 'registerError',
+      name: 'registerError',
+      component: registerError,
+      meta: {
+        title: '手机注册失敗'
       }
     }]
   }],

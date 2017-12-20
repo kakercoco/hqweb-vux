@@ -54,7 +54,7 @@
 	          this.ind = data.data.categories[0].cat_name
 	          let catId = data.data.categories[0].cat_id
 	          let params = {
-	            catId: catId
+	            cat_id: catId
           }
           axios.get('shop/v2/category/list', {
             params
@@ -64,9 +64,9 @@
 	            console.log(data)
 	            this.sortList2 = data.data
           },
-     (err) => {
-	       console.log(err)
-     }
+          (err) => {
+	            console.log(err)
+          }
 	)
         },
 (err) => {
