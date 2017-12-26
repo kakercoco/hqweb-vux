@@ -30,6 +30,7 @@
 	img,
 	a {
 		box-sizing: border-box;
+		font-family: "黑体";
 	}
 	body {
 		background-color: #f3f3f3;

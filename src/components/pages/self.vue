@@ -1,7 +1,7 @@
 <template>
 	<div class="self">
-		<blur :blur-amount=40 :url="url" :height="120" class="mytitle">
-			<p class="center fl"><img :src="url"></p>
+		<blur :blur-amount=40 :url="url"  class="mytitle">
+			<router-link tag="p" class="center fl" to="/setting/data"><img :src="url" ></router-link>
 			<div class="myt-c fl ml-20 mt-10" id="gstar">
 				<h3 v-cloak>{{data.user_name}}</h3>
 				<p>等级
@@ -47,7 +47,7 @@
 			<grid-item label="待付款" link="/main/index" class="my-grid__label">
 				<img slot="icon" src="https://hqwell.net/images/total_dfk.png">
 			</grid-item>
-			<grid-item label="待发货">
+			<grid-item label="待发货" link="/setting/data">
 				<img slot="icon" src="https://hqwell.net/images/total_dfh.png">
 			</grid-item>
 			<grid-item label="待收货">
@@ -142,6 +142,7 @@
 	
 	.mytitle {
 		padding: .1rem;
+		height: 1.2rem !important;
 	}
 	
 	.myt-c h3 {

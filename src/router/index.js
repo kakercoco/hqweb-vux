@@ -15,6 +15,8 @@ import setPassword from '@/components/pages/setPassword'
 import bindPhone from '@/components/pages/bindPhone'
 import register from '@/components/pages/register'
 import registerError from '@/components/pages/registerError'
+import setting from '@/components/setting'
+import data from '@/components/pages/data'
 
 Vue.use(Router)
 let router = new Router({
@@ -123,6 +125,19 @@ let router = new Router({
         title: '手机注册失敗'
       }
     }]
+  }, { // 设置中心
+    path: '/setting',
+    name: 'setting',
+    component: setting,
+    children: [{   // 我的资料
+      path: 'data',
+      name: 'data',
+      component: data,
+      meta: {
+        title: '我的资料'
+      }
+    }]
+
   }],
   mode: 'history'
 })
