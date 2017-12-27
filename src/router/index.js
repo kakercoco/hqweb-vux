@@ -17,6 +17,10 @@ import register from '@/components/pages/register'
 import registerError from '@/components/pages/registerError'
 import setting from '@/components/setting'
 import data from '@/components/pages/data'
+import changeName from '@/components/pages/changeName'
+import changePhone from '@/components/pages/changePhone'
+import changeNewPhone from '@/components/pages/changeNewPhone'
+import changePassword from '@/components/pages/changePassword'
 
 Vue.use(Router)
 let router = new Router({
@@ -135,6 +139,34 @@ let router = new Router({
       component: data,
       meta: {
         title: '我的资料'
+      }
+    }, {   // 修改昵称
+      path: 'changeName',
+      name: 'changeName',
+      component: changeName,
+      meta: {
+        title: '修改昵称'
+      }
+    }, {   // 修改手机
+      path: 'changePhone',
+      name: 'changePhone',
+      component: changePhone,
+      meta: {
+        title: '手机换绑'
+      }
+    }, {   // 修改新手机
+      path: 'changeNewPhone',
+      name: 'changeNewPhone',
+      component: changeNewPhone,
+      meta: {
+        title: '手机换绑'
+      }
+    }, {   // 更改密码
+      path: 'changePassword',
+      name: 'changePassword',
+      component: changePassword,
+      meta: {
+        title: '更改密码'
       }
     }]
 
