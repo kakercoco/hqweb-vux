@@ -45,49 +45,48 @@
 	import axios from '../libs/axios.js'
 	import { Swiper, Group, Cell, XNumber } from 'vux'
 	export default {
-		name: 'self',
-		components: {
-			Swiper,
-			Group,
-			Cell,
-			XNumber
-		},
-		data() {
-			return {
-				name: 'kaker',
-				url: 'https://o3e85j0cv.qnssl.com/hot-chocolate-1068703__340.jpg',
-				value:0,
-				list: [{
-					url: 'javascript:',
-					img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg'
-				}, {
-					url: 'javascript:',
-					img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB2FFsjdTJ_SKJjSZPiXXb3LpXa_!!2046800963.jpg_430x430q90.jpg'
-				}, {
-					url: 'javascript:',
-					img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg'
-				}]
-			}
-		},
-		created() {
-			axios.post('shop/v2/passport/phone', {
-					mobile: '18790671040',
-					agree: '1'
-				})
-				.then(function(response) {
-					console.log(response);
-				})
-				.catch(function(err) {
-					//console.log(err);
-				});
-			console.log(this.$route.params)
-		}
+	  name: 'self',
+	  components: {
+	    Swiper,
+	    Group,
+	    Cell,
+	    XNumber
+  },
+	  data () {
+    return {
+	      name: 'kaker',
+	      url: 'https://o3e85j0cv.qnssl.com/hot-chocolate-1068703__340.jpg',
+	      value: 0,
+	      list: [{
+	        url: 'javascript:',
+	        img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg'
+      }, {
+	        url: 'javascript:',
+	        img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB2FFsjdTJ_SKJjSZPiXXb3LpXa_!!2046800963.jpg_430x430q90.jpg'
+      }, {
+	        url: 'javascript:',
+	        img: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg'
+      }]
+    }
+  },
+	  created () {
+	    axios.post('shop/v2/passport/phone', {
+	      mobile: '18790671040',
+	      agree: '1'
+    })
+	  .then(function (response) {
+	    console.log(response)
+  })
+    .catch(function (err) {
+	      console.log(err)
+    })
+	    console.log(this.$route.params)
+  }
 
 	}
 </script>
 
 <style scoped>
-	
 	.vux-x-icon {
 		/*fill: red;*/
 	}

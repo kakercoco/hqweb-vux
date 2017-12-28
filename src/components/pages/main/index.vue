@@ -495,7 +495,7 @@
 
 <script>
 	import { Swiper, SwiperItem, Grid, GridItem, Marquee, MarqueeItem } from 'vux'
-	import axios from '../../libs/axios'
+	import axios from '../../../libs/axios'
 	export default {
 	  name: 'home',
 	  components: {

@@ -1,26 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import main from '@/components/main'
-import index from '@/components/pages/index'
-import sort from '@/components/pages/sort'
-import car from '@/components/pages/car'
-import self from '@/components/pages/self'
-import sortList from '@/components/pages/sortList'
+import index from '@/components/pages/main/index'
+import sort from '@/components/pages/main/sort'
+import car from '@/components/pages/main/car'
+import self from '@/components/pages/main/self'
+import sortList from '@/components/pages/main/sortList'
 import produce from '@/components/pages/produce'
 import login from '@/components/login'
-import loginIndex from '@/components/pages/login'
-import findPassword from '@/components/pages/findPassword'
-import findPasswordCode from '@/components/pages/findPasswordCode'
-import setPassword from '@/components/pages/setPassword'
-import bindPhone from '@/components/pages/bindPhone'
-import register from '@/components/pages/register'
-import registerError from '@/components/pages/registerError'
+import loginIndex from '@/components/pages/login/login'
+import findPassword from '@/components/pages/login/findPassword'
+import findPasswordCode from '@/components/pages/login/findPasswordCode'
+import setPassword from '@/components/pages/login/setPassword'
+import bindPhone from '@/components/pages/login/bindPhone'
+import register from '@/components/pages/login/register'
+import registerError from '@/components/pages/login/registerError'
 import setting from '@/components/setting'
-import data from '@/components/pages/data'
-import changeName from '@/components/pages/changeName'
-import changePhone from '@/components/pages/changePhone'
-import changeNewPhone from '@/components/pages/changeNewPhone'
-import changePassword from '@/components/pages/changePassword'
+import data from '@/components/pages/setting/data'
+import changeName from '@/components/pages/setting/changeName'
+import changePhone from '@/components/pages/setting/changePhone'
+import changeNewPhone from '@/components/pages/setting/changeNewPhone'
+import changePassword from '@/components/pages/setting/changePassword'
+import settingIndex from '@/components/pages/setting/setting'
+import help from '@/components/pages/setting/help'
+import feedBack from '@/components/pages/setting/feedBack'
+import about from '@/components/pages/setting/about'
 
 Vue.use(Router)
 let router = new Router({
@@ -167,6 +171,34 @@ let router = new Router({
       component: changePassword,
       meta: {
         title: '更改密码'
+      }
+    }, {   // 设置首页
+      path: 'setting',
+      name: 'settingIndex',
+      component: settingIndex,
+      meta: {
+        title: '设置'
+      }
+    }, {   // 帮助
+      path: 'help',
+      name: 'help',
+      component: help,
+      meta: {
+        title: '使用指南'
+      }
+    }, {   // 意见反馈
+      path: 'feedBack',
+      name: 'feedBack',
+      component: feedBack,
+      meta: {
+        title: '意见反馈'
+      }
+    }, {   // 关于
+      path: 'about',
+      name: 'about',
+      component: about,
+      meta: {
+        title: '关于'
       }
     }]
 

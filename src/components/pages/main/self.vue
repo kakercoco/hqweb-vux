@@ -8,12 +8,10 @@
 					<rater :max=5 star="❤" disabled active-color="#fc3" v-model="stars" :font-size=20></rater>
 				</p>
 			</div>
-			<div class="myt-r fr mt-10">
-				<a href="mysetting.html">
+			<router-link tag="div" to="/setting/setting" class="myt-r fr mt-10">
 					<img src="https://hqwell.net/images/setting.png" />
 					<span>设置</span>
-				</a>
-			</div>
+			</router-link>
 		</blur>
 		<div class="my-cont">
 			<div class="myc-top ">
@@ -77,7 +75,7 @@
 </template>
 
 <script>
-	import axios from '../../libs/axios.js'
+	import axios from '../../../libs/axios.js'
 	import { Blur, Group, Cell, Grid, GridItem, Rater } from 'vux'
 	export default {
 	  name: 'self',

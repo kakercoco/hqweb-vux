@@ -15,31 +15,31 @@
 <script>
 	import { Group, Cell, Panel } from 'vux'
 	export default {
-		name: 'orderConfirm',
-		components: {
-			Group,
-			Cell,
-			Panel
-		},
-		data() {
-			return {
-				name: "kaker",
-				list: [{
-					src: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg',
-					title: '精美手机可定制专属',
-					desc: "￥38.88 <span class='fr'>x1</span>",
-				}],
-			}
-		},
-		created() {
+	  name: 'orderConfirm',
+	  components: {
+	    Group,
+	    Cell,
+	    Panel
+  },
+	  data () {
+	    return {
+	      name: 'kaker',
+	      list: [{
+	        src: 'https://img.alicdn.com/imgextra/i3/2046800963/TB25QXihZ2vU1JjSZFwXXX2cpXa_!!2046800963.jpg_430x430q90.jpg',
+	        title: '精美手机可定制专属',
+	        desc: "￥38.88 <span class='fr'>x1</span>"
+      }]
+    }
+  },
+	  created () {
 
-		},
-		mounted() {
+  },
+	  mounted () {
 
-		},
-		methods: {
+  },
+	  methods: {
 
-		}
+  }
 	}
 </script>
 

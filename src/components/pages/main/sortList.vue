@@ -1,103 +1,106 @@
 <template>
 	<div>
 		<div class="sort-top fl">
-			<img src="https://hqwell.net/images/logo2.png" class="fl sort-logo2" />
-			<p class="fr sort-serch mr-10">
+			<p class="fl sort-serch ml-10">
 				<img src="https://hqwell.net/images/search.png" class="fl sort-serch-logo" />
-				<input type="text" id="searchText" name="sort-ipt" value="" class="sort-serch-ipt" placeholder="搜索您想要的商品" />
+				<input type="text" name="sort-ipt" value="" class="sort-serch-ipt" id="searchText" placeholder="搜索您想要的商品" />
 			</p>
+			<p class="sort-logo fr sort-logo-block"></p>
 		</div>
 		<div class="sort-cont">
-			<!--一级分类-->
-			<div class="sort-c-l fl">
+			<div class="sort-search-title">
 				<ul>
-					<!--默认选中第一个-->
-					<li v-for='(list,index) in sortList' v-bind:class="{'on':ind == list.cat_name}" @click="changeBgc(list.cat_name,list.cat_id)" :key="index">
-						<a href="javascript:void(0)">{{list.cat_name}}</a><span class="fl"></span>
-					</li>
+					<li class="fl tac " v-bind:class="{'c-f7c08':zhFlag}" @click="zhFuc()">综合</li>
+					<li class="fl tac" v-bind:class="{'c-f7c08':xLFlag}" @click="xLFuc()">销量</li>
+					<li class="fl tac" v-bind:class="{'c-f7c08':jGFlag}" @click="jGFuc()">价格 <img src="https://hqwell.net/images/sort-jg.png" alt="" id='jgimg'></li>
+					<li class="fl tac" id="filter" v-bind:class="{'c-f7c08':sXFlag}" @click="sXFuc()">筛选<img src="https://hqwell.net/images/sort-sx.png" /></li>
 				</ul>
 			</div>
-			<!--二级三级分类-->
-			<div class="sort-c-r fr" id="loutiId">
-				<div class="sort-cr-cont" v-for='(list,index) in sortList2' v-bind:id="index" :key="index">
-					<h4>{{list.cat_name}}</h4>
-					<ul>
-						<router-link tag='li' :to="{path:'/main/sortList/'+goods.cat_id}" v-for='(goods,index) in list.sub' class="fl tac" :key="index">
-							<img v-bind:src="goods.cat_thums" />
-							<span>{{goods.cat_name}}</span>
-						</router-link>
-					</ul>
-				</div>
+			<!---->
+			<div class="sort-search-cont">
+				<!--纵向展示-->
+				<ul class="sort-search-cont-ul  mt-5">
+					<li class="sort-search-cont-ltem" v-for="(goods,index) in List" :key="index">
+						<a href="javascript:void(0);" @click="getproduce(goods.goods_id)">
+							<div class="fl sort-scont-pick">
+								<img v-bind:src="goods.goods_thums" />
+							</div>
+							<div class="fl sort-scont-cont">
+								<h4 class="c-333 mt-10">{{goods.goods_name}}</h4>
+								<p class="mt-20 c-fc3">￥<span>{{goods.act_price}}</span><small class="c-999 ml-20">{{goods.show_sold_count}}人付款</small></p>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!--大图显示效果-->
+				<!--横向展示-->
+				<ul class="sort-search-cont-ul2 displayNone mt-5">
+					<li class="fl sort-search-cont-ltem2" v-for="(goods,index) in List" :key="index">
+						<a href="javascript:void(0);" @click="getproduce(goods.goods_id)">
+							<div class="fl sort-scont-pick2">
+								<img v-bind:src="goods.goods_thums" />
+							</div>
+							<div class="fl sort-scont-cont2">
+								<h4 class="c-333 mt-5">{{goods.goods_name}}</h4>
+								<p class="c-fc3  mt-5">￥<span>{{goods.act_price}}</span><small class="c-999 ml-20">{{goods.show_sold_count}}人付款</small></p>
+							</div>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import axios from '../../libs/axios'
+	import axios from '../../../libs/axios'
 	export default {
 	  name: 'sort',
 	  data () {
 	    return {
-	      onFlag: false,
-	      ind: '',
-	      sortList: [], // 一级分类
-	      sortList2: [] // 二三级分类
+	      minNum: '', // 价格区间        最小值
+	      maxNum: '', // 价格区间     最大值
+	      zhFlag: true, // 整合
+	      xLFlag: false, // 销量
+	      jGFlag: false, // 价格
+	      sXFlag: false, // 筛选
+	      jGstatus: false, // false 升序排序  true 降序排序
+	      List: [], // 商品列表
+	      brandsList: [], // 筛选中的品牌列表
+	      specList: [], // 筛选中的属性列表
+	      brandId: 0, // 品牌id为零
+	      specArr: [], // 属性id
+	      specNum: 0 // 属性个数
     }
   },
 	  created () {
-	    axios.get('shop/v2/category/first')
-       .then(
-        (data) => {
-	          console.log(data)
-	          this.sortList = data.data.categories
-	          this.ind = data.data.categories[0].cat_name
-	          let catId = data.data.categories[0].cat_id
-	          let params = {
-	            cat_id: catId
-          }
-          axios.get('shop/v2/category/list', {
-            params
-          })
-	        .then(
-          (data) => {
-	            console.log(data)
-	            this.sortList2 = data.data
-          },
-          (err) => {
-	            console.log(err)
-          }
-	)
-        },
-(err) => {
-	  console.log(err)
-	}
-)
+	    console.log(this.$route.params)
+	    let params = {
+	      car_id: this.$route.params,
+	      station_id: 1
+    }
+	    axios.get('shop/v2/category/goodslist', {
+	      params
+    })
+	  .then(
+	    (data) => {
+	      console.log(data)
+	      this.List = data.data.goods_info.data
+	      this.brandsList = data.data.brands_list
+	      this.specList = data.data.spec_list
+	      this.specNum = data.data.spec_list.length
+    },
+	   (err) => {
+     console.log(err)
+   }
+   )
   },
 	  methods: {
-// 伪造跳转锚点      获取二三级分类
-	    changeBgc (name, catId) {
-	      let params = {
-	        'cat_id': catId
-      }
-	      axios.get('shop/v2/category/list', {
-	        params
-      })
-        .then(
-         (data) => {
-	           this.sortList2 = data.data
-	           console.log(data.data)
-         },
-	       (err) => {
-	         console.log(err)
-       }
-	)
-	      this.ind = name
-	    },
-	    sanjicat: function (catId) { // 跳转到商品列表
-	// 5 要改回来得到
-	      window.location.href = 'sort_search.html?cat_id=' + catId
-	    }
+	    ck () {
+    }
+  },
+	  watch: {
+	    '$route': 'ck'
   }
 	}
 </script>
@@ -109,6 +112,8 @@
 		background-color: #fff;
 		width: 100%;
 		border-bottom: 2px solid #eee;
+		position: fixed;
+		top: 0;
 	}
 	
 	.sort-logo2 {
@@ -152,93 +157,15 @@
 	
 	.sort-cont {
 		width: 100%;
-		height: 92vh;
-	}
-	
-	.sort-c-l {
-		width: 23%;
-		height: 100%;
-		overflow: auto;
-		padding-bottom: 0.5rem;
-	}
-	
-	.sort-c-l li {
-		height: 0.47rem;
-		width: 100%;
-		font-size: 0.146rem;
-		text-align: center;
-		line-height: 0.47rem;
-		border-bottom: 1px solid #fff;
-		color: #999;
-		font-weight: bold;
-	}
-	
-	.sort-c-l li.on {
-		background-color: #fff;
-		color: #333;
-	}
-	
-	.sort-c-l li span {
-		width: 0.05rem;
-		height: 0.2rem;
-		background-color: #ffcc33;
-		margin-top: 0.13rem;
-		display: none;
-	}
-	
-	.sort-c-l li.on span {
-		display: block;
-	}
-	
-	::-webkit-scrollbar {
-		width: 0px;
-		background-color: transparent;
-	}
-	
-	.sort-c-r {
-		width: 77%;
-		height: 100%;
-		overflow-y: auto;
-		background-color: #fff;
-		padding-bottom: 0.5rem;
-	}
-	
-	.sort-cr-cont {
-		padding: 0.15rem 0 0 0.05rem;
-	}
-	
-	.sort-cr-cont h4 {
-		background-color: #f3f3f3;
-		font-size: 0.125rem;
-		padding-left: 0.2rem;
-		height: 0.25rem;
-		line-height: 0.25rem;
-		font-weight: bold;
-	}
-	
-	.sort-cr-cont ul {
-		margin: 0.2rem 0 0.1rem;
-		overflow: hidden;
-	}
-	
-	.sort-cr-cont li {
-		width: 33.33%;
-	}
-	
-	.sort-cr-cont li img {
-		width: 0.84rem;
-	}
-	
-	.sort-cr-cont li span {
-		font-weight: bold;
-		font-size: 0.125rem;
-		color: #333;
+		padding: 0.5rem 0 0;
 	}
 	
 	.sort-search-title {
 		height: 0.4rem;
 		width: 100%;
 		background-color: #fff;
+		position: fixed;
+		top: 0.5rem;
 	}
 	
 	.sort-search-title li {
@@ -255,7 +182,7 @@
 	.sort-search-cont {
 		overflow-y: scroll;
 		height: 100%;
-		padding-bottom: 0.5rem;
+		padding-top: 0.4rem;
 	}
 	
 	.sort-search-cont .sort-search-cont-ltem {
@@ -294,6 +221,7 @@
 		word-break: break-all;
 		min-height: 0.3rem;
 		line-height: 0.17rem;
+		font-weight: 500;
 	}
 	
 	.sort-scont-cont p {
@@ -339,6 +267,7 @@
 		word-break: break-all;
 		min-height: 0.3rem;
 		line-height: 0.16rem;
+		font-weight: 500;
 	}
 	
 	.sort-scont-cont2 p {
@@ -435,14 +364,5 @@
 		height: 0.5rem;
 		outline: none;
 		font-size: 0.156rem;
-	}
-	
-	.sort-c-l li a {
-		color: #999;
-	}
-	
-	.sort-c-l li.on a {
-		background-color: #fff;
-		color: #333;
 	}
 </style>
