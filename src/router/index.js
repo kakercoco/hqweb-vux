@@ -25,6 +25,7 @@ import settingIndex from '@/components/pages/setting/setting'
 import help from '@/components/pages/setting/help'
 import feedBack from '@/components/pages/setting/feedBack'
 import about from '@/components/pages/setting/about'
+import changeSite from '@/components/pages/changeSite'
 
 Vue.use(Router)
 let router = new Router({
@@ -201,7 +202,13 @@ let router = new Router({
         title: '关于'
       }
     }]
-
+  }, {  // 切换站点
+    path: '/changeSite',
+    name: 'changeSite',
+    component: changeSite,
+    meta: {
+      title: '切换站点'
+    }
   }],
   mode: 'history'
 })

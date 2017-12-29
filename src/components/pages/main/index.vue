@@ -1,10 +1,16 @@
 <template>
 	<div>
-		<swiper dots-position="center">
-			<swiper-item v-for="(item, index) in banner_list" :key="index">
-				<img :src="item.img" class="swiper-img">
-			</swiper-item>
-		</swiper>
+		<div class="myswiper">
+			<swiper dots-position="center">
+				<swiper-item v-for="(item, index) in banner_list" :key="index">
+					<img :src="item.img" class="swiper-img">
+				</swiper-item>
+			</swiper>
+			<router-link tag="div" to="/changeSite" class="changeSite">
+				<img src="https://hqwell.net/images/change_site.png" alt="">
+				<span>天长站</span>
+			</router-link>
+		</div>
 		<grid :cols="5" class="nav bg-fff">
 			<grid-item label="特惠组合">
 				<img slot="icon" src="https://hqwell.net/images/nav_01.png">
@@ -30,7 +36,7 @@
 				<marquee style="height: 43px;" :interval='3000'>
 			      <marquee-item v-for="(item, index) in newsList" :key="index" style="height: 22px;" >
 			      	<span class="hot-hh">活动</span>
-			      	<i style="font-style: normal;">{{item.title}}</i>
+			      	<i style="font-style: normal;">{{item.article_title}}</i>
 			      </marquee-item>
 			    </marquee>
 			</div>
@@ -92,7 +98,7 @@
 				<img src="https://hqwell.net/images/open_title01.png" class="item-img" />
 			</div>
 			<ul class="thzh-ul clearfix">
-				<li class="fl" v-for="item in groupList" v-cloak>
+				<li class="fl" v-for="(item,index) in groupList" v-cloak :key="index">
 					<a href="javascript:void(0)" @click="groupFun(item.comb_id)">
 						<div class="fl thzh-li-l">
 							<h3 v-text="item.comb_name"></h3>
@@ -553,9 +559,9 @@
     })
 	   .then(
          (data) => {
-           console.log(data)
+           console.log('下一行是新闻信息')
+           console.log(data.data)
 	           this.newsList = data.data
-	           console.log(this.newsList)
          },
 	      (err) => {
 	        console.log(err)
@@ -571,7 +577,31 @@
 	}
 </script>
 
-<style>
+<style lang="less">
+	.myswiper{
+		position: relative;
+	}
+	.changeSite{
+		position: absolute;
+		top: 0.1rem;
+		right: 0.1rem;
+    text-align: center;
+    line-height: 0.25rem;
+    height: 0.25rem;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 0.3rem;
+		padding: 0 0.05rem;
+		color: #fff;
+		img{
+			height: 0.2rem;
+			float: left;
+			margin-top: 0.03rem;
+		}
+		span{
+			font-size: 0.1rem;
+			margin-right: 0.03rem;
+		}
+	}
 	.swiper-img {
 		width: 100%;
 	}
