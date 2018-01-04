@@ -87,9 +87,6 @@
 </script>
 
 <style scoped>
-	.vux-x-icon {
-		/*fill: red;*/
-	}
 	.footer{
 		width: 100%;
 		height: 50px;

@@ -26,6 +26,10 @@ import help from '@/components/pages/setting/help'
 import feedBack from '@/components/pages/setting/feedBack'
 import about from '@/components/pages/setting/about'
 import changeSite from '@/components/pages/changeSite'
+import sale from '@/components/sale'
+import saleBanner from '@/components/pages/sale/banner'
+import gift from '@/components/pages/sale/gift'
+import giftBuy from '@/components/pages/sale/giftBuy'
 
 Vue.use(Router)
 let router = new Router({
@@ -209,6 +213,32 @@ let router = new Router({
     meta: {
       title: '切换站点'
     }
+  }, {  // 活动中心
+    path: '/sale',
+    name: 'sale',
+    component: sale,
+    children: [{
+      path: 'banner',
+      name: 'saleBanner',
+      component: saleBanner,
+      meta: {
+        title: '特惠活动'
+      }
+    }, {
+      path: 'gift',
+      name: 'gift',
+      component: gift,
+      meta: {
+        title: '主题活动'
+      }
+    }, {
+      path: 'giftBuy/:id',
+      name: 'giftBuy',
+      component: giftBuy,
+      meta: {
+        title: '大礼包'
+      }
+    }]
   }],
   mode: 'history'
 })

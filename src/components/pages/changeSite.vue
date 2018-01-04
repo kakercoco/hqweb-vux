@@ -4,7 +4,7 @@
 		<div id="add">
 			<img src="http://hqwell.cn/images/ditu2.png">
 			<span id="citywrap">当前站点:</span>
-			<spinner type="ios-small" ></spinner>
+			<spinner type="ios-small"></spinner>
 			<span id="site" style="display: inline-block;">杨浦新站</span>
 		</div>
 		<p id="chooseAdd">请选择你对应的站点</p>					
@@ -45,6 +45,9 @@ export default{
   methods: {
     change (val, key) {
       console.log(val + key)
+      window.localStorage.setItem('stationName', key)
+      window.localStorage.setItem('stationId', val)
+      this.$router.push({path: '/main/index'})
     }
   }
 }

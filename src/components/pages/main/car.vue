@@ -230,7 +230,7 @@
 		position: fixed;
 		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
-		bottom: 0.52rem;
+		bottom: 50px;
 		left: 0;
 		right: 0;
 		width: 100%;
@@ -240,8 +240,7 @@
 		margin: 0 auto;
 		position: relative;
 		background: #fff;
-		max-width: 7.68rem;
-		height: 0.5rem;
+		height: 100%;
 		font-size: 0.15rem;
 	}
 	.allCheck{

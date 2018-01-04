@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<div class="myswiper">
-			<swiper dots-position="center">
-				<swiper-item v-for="(item, index) in banner_list" :key="index">
+			<swiper dots-position="center" loop>
+				<swiper-item v-for="(item, index) in banner_list" :key="index" @click.native="banner(item.id,item.type)">
 					<img :src="item.img" class="swiper-img">
 				</swiper-item>
 			</swiper>
 			<router-link tag="div" to="/changeSite" class="changeSite">
 				<img src="https://hqwell.net/images/change_site.png" alt="">
-				<span>天长站</span>
+				<span>{{stationName}}</span>
 			</router-link>
 		</div>
 		<grid :cols="5" class="nav bg-fff">
@@ -500,554 +500,593 @@
 </template>
 
 <script>
-	import { Swiper, SwiperItem, Grid, GridItem, Marquee, MarqueeItem } from 'vux'
-	import axios from '../../../libs/axios'
-	export default {
-	  name: 'home',
-	  components: {
-	    Swiper,
-	    SwiperItem,
-	    Grid,
-	    GridItem,
-	    Marquee,
+import { Swiper, SwiperItem, Grid, GridItem, Marquee, MarqueeItem } from 'vux'
+import axios from '../../../libs/axios'
+export default {
+  name: 'home',
+  components: {
+    Swiper,
+    SwiperItem,
+    Grid,
+    GridItem,
+    Marquee,
     MarqueeItem
   },
-	  data () {
+  data () {
     return {
-	      name: 'kaker',
-	      tabShow: 0,
-	      banner_list: [{ // 轮播图数据
-	        url: 'javascript:',
-	        img: 'https://hqwell.net/images/banner3.jpg',
-	        title: '送你一朵fua'
-      }, {
-	        url: 'javascript:',
-	        img: 'https://hqwell.net/images/banner.png',
-	        title: '送你一次旅行'
-      }],
-	      newsList: [{ // 文字滚动数据
-	        url: 'javascript:',
-	        title: '选对过冬被，睡好这辈子'
-      }, {
-	        url: 'javascript:',
-	        title: '黄雀秋品首尔风尚'
-      }, {
-	        url: 'javascript:',
-	        title: '黄雀地标商品，民俗风韵之窗'
-      }, {
-	        url: 'javascript:',
-	        title: '民俗风韵之窗'
-      }],
-	      groupList: [], // 特惠组合列表
-	      cardList: [{  // 卡片列表
-	        img: 'https://hqwell.net/images/card_banner.png'
-      }, {
-	        img: 'https://hqwell.net/images/card_banner2.png'
-      }, {
-	        img: 'https://hqwell.net/images/card_banner3.png'
-      }]
+      name: 'kaker',
+      tabShow: 0,
+      stationName: '',
+      banner_list: [
+        {
+          // 轮播图数据
+          img: 'https://hqwell.net/images/banner3.jpg',
+          title: '送你一朵fua',
+          type: 0,
+          id: 123
+        },
+        {
+          img: 'https://hqwell.net/images/banner.png',
+          title: '送你一次旅行',
+          type: 0,
+          id: 789
+        },
+        {
+          img: 'http://hqwell.cn/images/gift_banner2.png',
+          title: '送你一次旅行',
+          type: 1,
+          id: 456
+        }
+      ],
+      newsList: [
+        {
+          // 文字滚动数据
+          url: 'javascript:',
+          title: '选对过冬被，睡好这辈子'
+        },
+        {
+          url: 'javascript:',
+          title: '黄雀秋品首尔风尚'
+        },
+        {
+          url: 'javascript:',
+          title: '黄雀地标商品，民俗风韵之窗'
+        },
+        {
+          url: 'javascript:',
+          title: '民俗风韵之窗'
+        }
+      ],
+      groupList: [], // 特惠组合列表
+      cardList: [
+        {
+          // 卡片列表
+          img: 'https://hqwell.net/images/card_banner.png'
+        },
+        {
+          img: 'https://hqwell.net/images/card_banner2.png'
+        },
+        {
+          img: 'https://hqwell.net/images/card_banner3.png'
+        }
+      ]
     }
   },
-	  created () {
-	    let kb = {
-	      'station_id': 8,
-	      'type': 0,
-	      'cat_id': 1
-	    }
-	    axios.get('shop/v2/articles/list', {
-	      params: kb
-    })
-	   .then(
-         (data) => {
-           console.log('下一行是新闻信息')
-           console.log(data.data)
-	           this.newsList = data.data
-         },
-	      (err) => {
-	        console.log(err)
-	      }
-	)
+  created () {
+    let stationId = window.localStorage.getItem('stationId')
+    let stationName = window.localStorage.getItem('stationName')
+    if (stationId == null) {
+      this.$router.push({ path: '/changeSite' })
+    } else {
+      this.stationId = stationId
+      this.stationName = stationName
+    }
+    let kb = {
+      station_id: 8,
+      type: 0,
+      cat_id: 1
+    }
+    axios
+      .get('shop/v2/articles/list', {
+        params: kb
+      })
+      .then(
+        data => {
+          console.log('下一行是新闻信息')
+          console.log(data.data)
+          this.newsList = data.data
+        },
+        err => {
+          console.log(err)
+        }
+      )
   },
-	  mounted () {
-
-  },
-	  methods: {
-
+  mounted () {},
+  methods: {
+    banner (id, type) {
+      if (type === 0) {  // banner普通活动列表
+        console.log(id)
+        this.$router.push({ path: '/sale/banner' })
+      } else {   // banner大礼包活动列表
+        console.log(id)
+        this.$router.push({ path: '/sale/gift' })
+      }
+    }
   }
-	}
+}
 </script>
 
 <style lang="less">
-	.myswiper{
-		position: relative;
-	}
-	.changeSite{
-		position: absolute;
-		top: 0.1rem;
-		right: 0.1rem;
-    text-align: center;
-    line-height: 0.25rem;
-    height: 0.25rem;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 0.3rem;
-		padding: 0 0.05rem;
-		color: #fff;
-		img{
-			height: 0.2rem;
-			float: left;
-			margin-top: 0.03rem;
-		}
-		span{
-			font-size: 0.1rem;
-			margin-right: 0.03rem;
-		}
-	}
-	.swiper-img {
-		width: 100%;
-	}
-	
-	.nav .weui-grid {
-		padding: 10px;
-	}
-	.nav{
-		border-bottom: 1px solid #eee;
-	}
-	.nav .weui-grid:before,
-	.nav .weui-grid:after {
-		border: none;
-	}
-	
-	.nav.weui-grids:after,
-	.nav.weui-grids:before {
-		border: none;
-	}
-	
-	.nav .weui-grid__icon {
-		width: 38px;
-		height: 38px;
-	}
-	
-	.nav .weui-grid__label {
-		font-size: 12px;
-	}
-	
-	.hot {
-		height: 0.53rem;
-		overflow: hidden;
-		padding: 0.05rem;
-	}
-	
-	.hot-b {
-		height: 100%;
-		padding: 0.05rem;
-		width: auto;
-	}
-	
-	.hot-b img {
-		height: 100%;
-	}
-	
-	.hot-h {
-		height: 100%;
-		width: 80%;
-		font-size: 11px;
-	}
-	
-	.hot-hh {
-		color: #ffa800;
-		border: 1px solid #ffa800;
-		padding: 0.02rem;
-		border-radius: 0.03rem;
-		float: left;
-		height: 0.15rem;
-		line-height: 0.11rem;
-		/*margin-top: 0.04rem;*/
-		margin-right: 0.05rem;
-		font-size: 0.1rem;
-	}
-	
-	.hot-h p {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-		height: 0.21rem;
-	}
-	
-	.text-scroll {
-		overflow: inherit !important;
-	}
-	
-	.vux-slider>.vux-swiper {
-		overflow: initial !important;
-	}
-	
-	.zbShow {
-		width: 100%;
-	}
-	
-	.no-xl {
-		width: 100%;
-		height: 1.05rem;
-		background: url(https://hqwell.net/images/no-xl-bg.png) no-repeat;
-		background-size: cover;
-		padding: 0.1rem 0.1rem;
-	}
-	
-	.no-xl ul {
-		height: 100%;
-	}
-	
-	.no-xl li {
-		width: 0.75rem;
-		height: 100%;
-		margin-left: 0.1rem;
-	}
-	
-	.no-xl li a {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-	
-	.buy-bk {
-		padding: 0.05rem 0;
-		height: 1.9rem;
-	}
-	
-	.bk-l {
-		width: 64%;
-		height: 100%;
-		position: relative;
-	}
-	
-	.bk-r {
-		width: 35%;
-		height: 100%;
-	}
-	
-	.bk_logo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 0.9rem;
-	}
-	
-	.bk-ll {
-		margin-top: 0.8rem;
-		width: 50%;
-	}
-	
-	.bk-lr {
-		width: 50%;
-	}
-	
-	.bk-ll p {
-		width: 70%;
-		margin: 0 auto;
-	}
-	
-	.bk-ll p:nth-of-type(1) {
-		font-size: 0.115rem;
-		color: #646464;
-	}
-	
-	.bk-ll p:nth-of-type(2) {
-		font-size: 0.105rem;
-		color: #fff;
-		background: linear-gradient(to right, #5500b3, #d100fe);
-		padding: 0 0.05rem;
-		margin-top: 0.05rem;
-		margin-bottom: 0.05rem;
-	}
-	
-	.bk-ll p:nth-of-type(3) {
-		font-size: 0.205rem;
-		color: #f20909;
-		font-weight: bold;
-	}
-	
-	.bk-ll p:nth-of-type(4) {
-		font-size: 0.115rem;
-		color: #bdbdbd;
-	}
-	
-	.bk-lr {
-		padding-right: 0.05rem;
-	}
-	
-	.bk-pro {
-		width: 100%;
-	}
-	
-	.bk-lr p img {
-		width: 0.2rem;
-	}
-	
-	.bk-lr p {
-		color: #bdbdbd;
-		font-size: 0.11rem;
-	}
-	
-	.bk-r img {
-		width: 0.7rem;
-		margin: 0 auto;
-		display: block;
-	}
-	
-	.bk-r p:nth-of-type(1) {
-		font-size: 0.115rem;
-		color: #646464;
-		padding-left: 0.1rem;
-	}
-	
-	.bk-r p:nth-of-type(2) {
-		font-size: 0.105rem;
-		color: #fff;
-		background: linear-gradient(to right, #5500b3, #d100fe);
-		padding: 0 0.05rem;
-		margin-left: 0.1rem;
-		margin-top: 0.05rem;
-		margin-bottom: 0.05rem;
-		width: 60%;
-	}
-	
-	.bk-r p:nth-of-type(3) {
-		font-size: 0.205rem;
-		color: #f20909;
-		font-weight: bold;
-	}
-	
-	.bk-r p:nth-of-type(4) {
-		font-size: 0.115rem;
-		color: #bdbdbd;
-	}
-	
-	.buy-item-title {
-		height: 0.4rem;
-		padding: 0.1rem;
-		position: relative;
-	}
-	
-	.buy-item-title .item-img {
-		height: 82%;
-		margin: 0 auto;
-		display: block;
-	}
-	
-	.buy-item-title a {
-		position: absolute;
-		right: 0.1rem;
-		top: 0;
-		line-height: 0.4rem;
-		color: #999;
-		font-size: 0.105rem;
-	}
-	
-	.buy-bk a {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-	
-	.buy-item-title a img {
-		height: 0.13rem;
-		margin-left: 0.1rem;
-		margin-top: 0.13rem;
-	}
-	
-	.thzh-ul {
-		width: 100%;
-	}
-	
-	.thzh-ul li {
-		width: 50%;
-		height: 1.05rem;
-		margin-bottom: 0.05rem;
-	}
-	
-	.thzh-ul li:nth-child(odd) {
-		padding-left: 0.05rem;
-		padding-right: 0.025rem;
-	}
-	
-	.thzh-ul li:nth-child(even) {
-		padding-left: 0.025rem;
-		padding-right: 0.05rem;
-	}
-	
-	.thzh-ul li a {
-		display: inline-block;
-		height: 100%;
-		width: 100%;
-	}
-	
-	.thzh-li-l,
-	.thzh-li-r {
-		width: 50%;
-		height: 100%;
-	}
-	
-	.thzh-li-l {
-		padding-top: 0.15rem;
-		padding-left: 0.1rem;
-	}
-	
-	.thzh-li-r img {
-		width: 100%;
-		margin-top: 0.1rem;
-	}
-	
-	.thzh-li-l h3 {
-		font-size: 0.156rem;
-		font-weight: bold;
-		height: 0.2rem;
-		line-height: 0.2rem;
-		overflow: hidden;
-	}
-	
-	.thzh-li-l p {
-		font-size: 0.105rem;
-		color: #464646;
-	}
-	
-	.thzh-ul li:nth-of-type(1) a {
-		background-color: #fff8eb;
-	}
-	
-	.thzh-ul li:nth-of-type(2) a {
-		background-color: #e9fcff;
-	}
-	
-	.thzh-ul li:nth-of-type(3) a {
-		background-color: #e6eef9;
-	}
-	
-	.thzh-ul li:nth-of-type(4) a {
-		background-color: #e2fcec;
-	}
-	
-	.thzh-ul li:nth-of-type(1) h3 {
-		color: #ff6600;
-	}
-	
-	.thzh-ul li:nth-of-type(2) h3 {
-		color: #1f8ce9;
-	}
-	
-	.thzh-ul li:nth-of-type(3) h3 {
-		color: #b250e4;
-	}
-	
-	.thzh-ul li:nth-of-type(4) h3 {
-		color: #63bf47;
-	}
-	
-	.thzh-ul-two {
-		height: 1rem;
-		width: 100%;
-	}
-	
-	.thzh-ul-two li {
-		width: 25%;
-		height: 100%;
-	}
-	
-	.thzh-ul-two li p {
-		font-size: 0.105rem;
-		color: #202020;
-	}
-	
-	.thzh-ul-two li span {
-		display: block;
-		font-size: 0.135rem;
-		color: #ff5050;
-	}
-	
-	.thzh-ul-two li img {
-		width: 100%;
-	}
-	
-	.thzh-ul-two a {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-	
-	.grxh-ul {
-		border-top: 0.01rem solid #eee;
-		padding-bottom: 0.05rem;
-		overflow: hidden;
-	}
-	
-	.grxh-ul li {
-		width: 50%;
-		height: 1.05rem;
-		border-bottom: 0.01rem solid #eee;
-	}
-	
-	.grxh-ul li:nth-child(odd) {
-		border-right: 0.01rem solid #eee;
-	}
-	
-	.grxh-li-r {
-		width: 40%;
-		height: 100%;
-	}
-	
-	.grxh-li-r img {
-		width: 110%;
-		margin-top: 0.1rem;
-		margin-left: -0.1rem;
-	}
-	
-	.grxh-li-l {
-		width: 60%;
-		height: 100%;
-		padding-top: 0.15rem;
-		padding-left: 0.1rem
-	}
-	
-	.grxh-li-l h3 {
-		font-size: 0.15rem;
-		font-weight: bold;
-		color: #202020;
-		width: 100%;
-		height: 0.2rem;
-		overflow: hidden;
-		line-height: 0.2rem;
-	}
-	
-	.grxh-li-l h4 {
-		font-size: 0.135rem;
-		color: #ff5050;
-		font-weight: bold;
-		margin-top: 0.2rem;
-	}
-	
-	.grxh-li-l p {
-		font-size: 0.105rem;
-		color: #b7b7b7;
-	}
-	
-	.grxh-ul li a {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-	.hq-card {
-		width: 100%;
-		height: 0.9rem;
-		padding: 0.05rem;
-	}
-	
-	.hq-card img {
-		height: 0.8rem;
-	}
-	
-	.hq-card .swiper-slide {
-		width: 3.4rem;
-	}
-	.hq-card .vux-swiper{
-		height: 0.8rem !important;
-	}
+.myswiper {
+  position: relative;
+}
+.changeSite {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  text-align: center;
+  line-height: 0.25rem;
+  height: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.3rem;
+  padding: 0 0.05rem;
+  color: #fff;
+  img {
+    height: 0.2rem;
+    float: left;
+    margin-top: 0.03rem;
+  }
+  span {
+    font-size: 0.1rem;
+    margin-right: 0.03rem;
+  }
+}
+.swiper-img {
+  width: 100%;
+}
+
+.nav .weui-grid {
+  padding: 10px;
+}
+.nav {
+  border-bottom: 1px solid #eee;
+}
+.nav .weui-grid:before,
+.nav .weui-grid:after {
+  border: none;
+}
+
+.nav.weui-grids:after,
+.nav.weui-grids:before {
+  border: none;
+}
+
+.nav .weui-grid__icon {
+  width: 38px;
+  height: 38px;
+}
+
+.nav .weui-grid__label {
+  font-size: 12px;
+}
+
+.hot {
+  height: 0.53rem;
+  overflow: hidden;
+  padding: 0.05rem;
+}
+
+.hot-b {
+  height: 100%;
+  padding: 0.05rem;
+  width: auto;
+}
+
+.hot-b img {
+  height: 100%;
+}
+
+.hot-h {
+  height: 100%;
+  width: 80%;
+  font-size: 11px;
+}
+
+.hot-hh {
+  color: #ffa800;
+  border: 1px solid #ffa800;
+  padding: 0.02rem;
+  border-radius: 0.03rem;
+  float: left;
+  height: 0.15rem;
+  line-height: 0.11rem;
+  /*margin-top: 0.04rem;*/
+  margin-right: 0.05rem;
+  font-size: 0.1rem;
+}
+
+.hot-h p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 0.21rem;
+}
+
+.text-scroll {
+  overflow: inherit !important;
+}
+
+.vux-slider > .vux-swiper {
+  overflow: initial !important;
+}
+
+.zbShow {
+  width: 100%;
+}
+
+.no-xl {
+  width: 100%;
+  height: 1.05rem;
+  background: url(https://hqwell.net/images/no-xl-bg.png) no-repeat;
+  background-size: cover;
+  padding: 0.1rem 0.1rem;
+}
+
+.no-xl ul {
+  height: 100%;
+}
+
+.no-xl li {
+  width: 0.75rem;
+  height: 100%;
+  margin-left: 0.1rem;
+}
+
+.no-xl li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.buy-bk {
+  padding: 0.05rem 0;
+  height: 1.9rem;
+}
+
+.bk-l {
+  width: 64%;
+  height: 100%;
+  position: relative;
+}
+
+.bk-r {
+  width: 35%;
+  height: 100%;
+}
+
+.bk_logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.9rem;
+}
+
+.bk-ll {
+  margin-top: 0.8rem;
+  width: 50%;
+}
+
+.bk-lr {
+  width: 50%;
+}
+
+.bk-ll p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.bk-ll p:nth-of-type(1) {
+  font-size: 0.115rem;
+  color: #646464;
+}
+
+.bk-ll p:nth-of-type(2) {
+  font-size: 0.105rem;
+  color: #fff;
+  background: linear-gradient(to right, #5500b3, #d100fe);
+  padding: 0 0.05rem;
+  margin-top: 0.05rem;
+  margin-bottom: 0.05rem;
+}
+
+.bk-ll p:nth-of-type(3) {
+  font-size: 0.205rem;
+  color: #f20909;
+  font-weight: bold;
+}
+
+.bk-ll p:nth-of-type(4) {
+  font-size: 0.115rem;
+  color: #bdbdbd;
+}
+
+.bk-lr {
+  padding-right: 0.05rem;
+}
+
+.bk-pro {
+  width: 100%;
+}
+
+.bk-lr p img {
+  width: 0.2rem;
+}
+
+.bk-lr p {
+  color: #bdbdbd;
+  font-size: 0.11rem;
+}
+
+.bk-r img {
+  width: 0.7rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.bk-r p:nth-of-type(1) {
+  font-size: 0.115rem;
+  color: #646464;
+  padding-left: 0.1rem;
+}
+
+.bk-r p:nth-of-type(2) {
+  font-size: 0.105rem;
+  color: #fff;
+  background: linear-gradient(to right, #5500b3, #d100fe);
+  padding: 0 0.05rem;
+  margin-left: 0.1rem;
+  margin-top: 0.05rem;
+  margin-bottom: 0.05rem;
+  width: 60%;
+}
+
+.bk-r p:nth-of-type(3) {
+  font-size: 0.205rem;
+  color: #f20909;
+  font-weight: bold;
+}
+
+.bk-r p:nth-of-type(4) {
+  font-size: 0.115rem;
+  color: #bdbdbd;
+}
+
+.buy-item-title {
+  height: 0.4rem;
+  padding: 0.1rem;
+  position: relative;
+}
+
+.buy-item-title .item-img {
+  height: 82%;
+  margin: 0 auto;
+  display: block;
+}
+
+.buy-item-title a {
+  position: absolute;
+  right: 0.1rem;
+  top: 0;
+  line-height: 0.4rem;
+  color: #999;
+  font-size: 0.105rem;
+}
+
+.buy-bk a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.buy-item-title a img {
+  height: 0.13rem;
+  margin-left: 0.1rem;
+  margin-top: 0.13rem;
+}
+
+.thzh-ul {
+  width: 100%;
+}
+
+.thzh-ul li {
+  width: 50%;
+  height: 1.05rem;
+  margin-bottom: 0.05rem;
+}
+
+.thzh-ul li:nth-child(odd) {
+  padding-left: 0.05rem;
+  padding-right: 0.025rem;
+}
+
+.thzh-ul li:nth-child(even) {
+  padding-left: 0.025rem;
+  padding-right: 0.05rem;
+}
+
+.thzh-ul li a {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.thzh-li-l,
+.thzh-li-r {
+  width: 50%;
+  height: 100%;
+}
+
+.thzh-li-l {
+  padding-top: 0.15rem;
+  padding-left: 0.1rem;
+}
+
+.thzh-li-r img {
+  width: 100%;
+  margin-top: 0.1rem;
+}
+
+.thzh-li-l h3 {
+  font-size: 0.156rem;
+  font-weight: bold;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  overflow: hidden;
+}
+
+.thzh-li-l p {
+  font-size: 0.105rem;
+  color: #464646;
+}
+
+.thzh-ul li:nth-of-type(1) a {
+  background-color: #fff8eb;
+}
+
+.thzh-ul li:nth-of-type(2) a {
+  background-color: #e9fcff;
+}
+
+.thzh-ul li:nth-of-type(3) a {
+  background-color: #e6eef9;
+}
+
+.thzh-ul li:nth-of-type(4) a {
+  background-color: #e2fcec;
+}
+
+.thzh-ul li:nth-of-type(1) h3 {
+  color: #ff6600;
+}
+
+.thzh-ul li:nth-of-type(2) h3 {
+  color: #1f8ce9;
+}
+
+.thzh-ul li:nth-of-type(3) h3 {
+  color: #b250e4;
+}
+
+.thzh-ul li:nth-of-type(4) h3 {
+  color: #63bf47;
+}
+
+.thzh-ul-two {
+  height: 1rem;
+  width: 100%;
+}
+
+.thzh-ul-two li {
+  width: 25%;
+  height: 100%;
+}
+
+.thzh-ul-two li p {
+  font-size: 0.105rem;
+  color: #202020;
+}
+
+.thzh-ul-two li span {
+  display: block;
+  font-size: 0.135rem;
+  color: #ff5050;
+}
+
+.thzh-ul-two li img {
+  width: 100%;
+}
+
+.thzh-ul-two a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.grxh-ul {
+  border-top: 0.01rem solid #eee;
+  padding-bottom: 0.05rem;
+  overflow: hidden;
+}
+
+.grxh-ul li {
+  width: 50%;
+  height: 1.05rem;
+  border-bottom: 0.01rem solid #eee;
+}
+
+.grxh-ul li:nth-child(odd) {
+  border-right: 0.01rem solid #eee;
+}
+
+.grxh-li-r {
+  width: 40%;
+  height: 100%;
+}
+
+.grxh-li-r img {
+  width: 110%;
+  margin-top: 0.1rem;
+  margin-left: -0.1rem;
+}
+
+.grxh-li-l {
+  width: 60%;
+  height: 100%;
+  padding-top: 0.15rem;
+  padding-left: 0.1rem;
+}
+
+.grxh-li-l h3 {
+  font-size: 0.15rem;
+  font-weight: bold;
+  color: #202020;
+  width: 100%;
+  height: 0.2rem;
+  overflow: hidden;
+  line-height: 0.2rem;
+}
+
+.grxh-li-l h4 {
+  font-size: 0.135rem;
+  color: #ff5050;
+  font-weight: bold;
+  margin-top: 0.2rem;
+}
+
+.grxh-li-l p {
+  font-size: 0.105rem;
+  color: #b7b7b7;
+}
+
+.grxh-ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hq-card {
+  width: 100%;
+  height: 0.9rem;
+  padding: 0.05rem;
+}
+
+.hq-card img {
+  height: 0.8rem;
+}
+
+.hq-card .swiper-slide {
+  width: 3.4rem;
+}
+.hq-card .vux-swiper {
+  height: 0.8rem !important;
+}
 </style>
