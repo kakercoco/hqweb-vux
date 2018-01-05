@@ -30,22 +30,19 @@
           <p style="margin-top: 0.23rem;">填写收货信息</p> 
           <li><input type="text" placeholder="请输入收货人姓名"></li> 
           <li>
-            <!-- <input type="text" placeholder="请输入省市区" readonly="readonly" class="gift-get-adress" > -->
-            <x-address  title="" v-model="value" :list="addressData" placeholder="请选择地址" @on-shadow-change="piker" ></x-address>
+            <x-address  title="" v-model="value" :list="addressData" placeholder="请输入省市区" @on-shadow-change="piker" class="gift-get-adress"></x-address>
           </li> 
-            <!-- <group>
-              <x-address title="" placeholder="请输入省市区" v-model="value" :list="addressData"></x-address>
-            </group> -->
           <li><input type="text" placeholder="请输入收货地址" class="gift-get-adress" ></li>
         </ul>
       </div>
       <div class="gift-get-float">
-        <p class="gift-get-btn tac"><button>下一步</button></p>
+        <p class="gift-get-btn tac" @click="getIt"><button>立即领取</button></p>
       </div>
     </div>
 </template>
 <script>
-import { XAddress, Group, ChinaAddressV4Data } from 'vux'
+import { XAddress, Group } from 'vux'
+import address from '../../json/address'
 export default {
   name: 'giftGetNow',
   components: {
@@ -55,17 +52,33 @@ export default {
     return {
       value: [],
       showAddress: true,
-      addressData: ChinaAddressV4Data
+      addressData: address
     }
   },
   methods: {
     piker (val, name) {
       console.log(val, name)
+    },
+    getIt () {
+      this.$router.push({path: '/sale/giftGetSuccess'})
     }
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
+.vux-cell-box:before{
+  border-top: none !important;
+}
+.vux-popup-picker-select{
+  text-align: left!important;
+  font-size: 0.12rem;
+  height: 0.33rem;
+  span{
+    display: inline-block;
+    height: 100%;
+    line-height: 0.33rem;
+  }
+}
 .can_use{
     min-height: 100vh;
     background: url(../../../assets/img/gift-get-bg.png);

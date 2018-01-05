@@ -35,6 +35,7 @@ import giftLookList from '@/components/pages/sale/giftLookList'
 import giftLookDetail from '@/components/pages/sale/giftLookDetail'
 import giftGet from '@/components/pages/sale/giftGet'
 import giftGetNow from '@/components/pages/sale/giftGetNow'
+import giftGetSuccess from '@/components/pages/sale/giftGetSuccess'
 
 Vue.use(Router)
 let router = new Router({
@@ -275,6 +276,13 @@ let router = new Router({
       path: 'giftGetNow',
       name: 'giftGetNow',
       component: giftGetNow,
+      meta: {
+        title: '领取大礼包'
+      }
+    }, {    // 领取大礼包成功
+      path: 'giftGetSuccess',
+      name: 'giftGetSuccess',
+      component: giftGetSuccess,
       meta: {
         title: '领取大礼包'
       }
