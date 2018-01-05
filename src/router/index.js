@@ -36,6 +36,10 @@ import giftLookDetail from '@/components/pages/sale/giftLookDetail'
 import giftGet from '@/components/pages/sale/giftGet'
 import giftGetNow from '@/components/pages/sale/giftGetNow'
 import giftGetSuccess from '@/components/pages/sale/giftGetSuccess'
+import theme from '@/components/pages/sale/theme'
+import news from '@/components/news'
+import newsList from '@/components/pages/news/newsList'
+import newsDetail from '@/components/pages/news/newsDetail'
 
 Vue.use(Router)
 let router = new Router({
@@ -285,6 +289,32 @@ let router = new Router({
       component: giftGetSuccess,
       meta: {
         title: '领取大礼包'
+      }
+    }, {    // 专题活动
+      path: 'theme',
+      name: 'theme',
+      component: theme,
+      meta: {
+        title: '主题活动'
+      }
+    }]
+  }, {
+    path: '/news',
+    name: 'news',
+    component: news,
+    children: [{    // 黄雀快报列表
+      path: 'newsList',
+      name: 'newsList',
+      component: newsList,
+      meta: {
+        title: '黄雀快报'
+      }
+    }, {    // 黄雀快报详情
+      path: 'newsDetail/:artical_id',
+      name: 'newsDetail',
+      component: newsDetail,
+      meta: {
+        title: '黄雀快报'
       }
     }]
   }],

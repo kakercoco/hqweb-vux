@@ -12,19 +12,19 @@
 			</router-link>
 		</div>
 		<grid :cols="5" class="nav bg-fff">
-			<grid-item label="特惠组合">
+			<grid-item label="特惠组合" @click.native="gotoTheme()">
 				<img slot="icon" src="https://hqwell.net/images/nav_01.png">
 			</grid-item>
-			<grid-item label="清洁洗护">
+			<grid-item label="清洁洗护" @click.native="gotoTheme()">
 				<img slot="icon" src="https://hqwell.net/images/nav_02.png">
 			</grid-item>
-			<grid-item label="家庭家居">
+			<grid-item label="家庭家居" @click.native="gotoTheme()">
 				<img slot="icon" src="https://hqwell.net/images/nav_03.png">
 			</grid-item>
-			<grid-item label="粮油干货">
+			<grid-item label="粮油干货" @click.native="gotoTheme()">
 				<img slot="icon" src="https://hqwell.net/images/nav_04.png">
 			</grid-item>
-			<grid-item label="食品饮料">
+			<grid-item label="食品饮料" @click.native="gotoTheme()">
 				<img slot="icon" src="https://hqwell.net/images/nav_05.png">
 			</grid-item>
 		</grid>
@@ -32,7 +32,7 @@
 			<div class="hot-b fl">
 				<img src="https://hqwell.net/images/pic_kb.png" />
 			</div>
-			<div class="hot-h fl">
+			<div class="hot-h fl" @click="gotoNews">
 				<marquee style="height: 43px;" :interval='3000'>
 			      <marquee-item v-for="(item, index) in newsList" :key="index" style="height: 22px;" >
 			      	<span class="hot-hh">活动</span>
@@ -611,6 +611,12 @@ export default {
         console.log(id)
         this.$router.push({ path: '/sale/gift' })
       }
+    },
+    gotoTheme (id) {
+      this.$router.push({path: '/sale/theme'})
+    },
+    gotoNews () {
+      this.$router.push({path: '/news/newsList'})
     }
   }
 }
