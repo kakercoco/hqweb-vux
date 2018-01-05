@@ -46,7 +46,7 @@
             <span>大礼包</span></p> 
             <p><span class="fl">购买数量</span> <span class="fr">礼券  x{{num}}</span></p>
             <p><span class="fl">金额</span><span class="fr">￥<i>{{num*78}}</i></span></p>
-            <button class="c-fff" >提交订单</button>
+            <button class="c-fff" @click="submitOrder">提交订单</button>
         </div>
       </popup>
     </div>
@@ -91,6 +91,9 @@ export default {
     handler (index) {
       console.log(index)
       this.tabIndex = index
+    },
+    submitOrder () {
+      this.$router.push({path: '/sale/giftBuySuccess'})
     }
   }
 }

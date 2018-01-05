@@ -30,6 +30,11 @@ import sale from '@/components/sale'
 import saleBanner from '@/components/pages/sale/banner'
 import gift from '@/components/pages/sale/gift'
 import giftBuy from '@/components/pages/sale/giftBuy'
+import giftBuySuccess from '@/components/pages/sale/giftBuySuccess'
+import giftLookList from '@/components/pages/sale/giftLookList'
+import giftLookDetail from '@/components/pages/sale/giftLookDetail'
+import giftGet from '@/components/pages/sale/giftGet'
+import giftGetNow from '@/components/pages/sale/giftGetNow'
 
 Vue.use(Router)
 let router = new Router({
@@ -217,26 +222,61 @@ let router = new Router({
     path: '/sale',
     name: 'sale',
     component: sale,
-    children: [{
+    children: [{ // banner普通活动
       path: 'banner',
       name: 'saleBanner',
       component: saleBanner,
       meta: {
         title: '特惠活动'
       }
-    }, {
+    }, {    // banner大礼包活动
       path: 'gift',
       name: 'gift',
       component: gift,
       meta: {
-        title: '主题活动'
+        title: '黄雀大礼包'
       }
-    }, {
+    }, {    // 大礼包详情
       path: 'giftBuy/:id',
       name: 'giftBuy',
       component: giftBuy,
       meta: {
         title: '大礼包'
+      }
+    }, {    // 购买大礼包成功
+      path: 'giftBuySuccess',
+      name: 'giftBuySuccess',
+      component: giftBuySuccess,
+      meta: {
+        title: '购买成功'
+      }
+    }, {    // 查看大礼包列表
+      path: 'giftLookList',
+      name: 'giftLookList',
+      component: giftLookList,
+      meta: {
+        title: '礼品券查看'
+      }
+    }, {    // 查看大礼包详情
+      path: 'giftLookDetail',
+      name: 'giftLookDetail',
+      component: giftLookDetail,
+      meta: {
+        title: '查看礼品券'
+      }
+    }, {    // 领取大礼包第一步
+      path: 'giftGet',
+      name: 'giftGet',
+      component: giftGet,
+      meta: {
+        title: '领取大礼包'
+      }
+    }, {    // 领取大礼包第二步
+      path: 'giftGetNow',
+      name: 'giftGetNow',
+      component: giftGetNow,
+      meta: {
+        title: '领取大礼包'
       }
     }]
   }],
