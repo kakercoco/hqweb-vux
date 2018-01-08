@@ -2,22 +2,22 @@
 	<div class="main">
 		<router-view></router-view>
 		<tabbar style="position: fixed;">
-			<tabbar-item link='/main/index'>
+			<tabbar-item link='/main/index' :selected="$route.path=='/main/index'">
 				<img slot="icon" src="https://hqwell.net/images/home.png">
 				<img slot="icon-active" src="https://hqwell.net/images/home2.png">
 				<span slot="label">首页</span>
 			</tabbar-item>
-			<tabbar-item link='/main/sort'>
+			<tabbar-item link='/main/sort' :selected="$route.path=='/main/sort'">
 				<img slot="icon" src="https://hqwell.net/images/sort.png">
 				<img slot="icon-active" src="https://hqwell.net/images/sort2.png">
 				<span slot="label">分类</span>
 			</tabbar-item>
-			<tabbar-item link='/main/car' badge="2">
+			<tabbar-item link='/main/car' badge="2" :selected="$route.path=='/main/car'">
 				<img slot="icon" src="https://hqwell.net/images/shop.png">
 				<img slot="icon-active" src="https://hqwell.net/images/shop2.png">
 				<span slot="label">购物车</span>
 			</tabbar-item>
-			<tabbar-item link='/main/self'>
+			<tabbar-item link='/main/self' :selected="$route.path=='/main/self'">
 				<img slot="icon" src="https://hqwell.net/images/my.png">
 				<img slot="icon-active" src="https://hqwell.net/images/my2.png">
 				<span slot="label">我的</span>

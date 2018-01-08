@@ -30,6 +30,7 @@ import sale from '@/components/sale'
 import saleBanner from '@/components/pages/sale/banner'
 import gift from '@/components/pages/sale/gift'
 import giftBuy from '@/components/pages/sale/giftBuy'
+import groupBuy from '@/components/pages/sale/groupBuy'
 import giftBuySuccess from '@/components/pages/sale/giftBuySuccess'
 import giftLookList from '@/components/pages/sale/giftLookList'
 import giftLookDetail from '@/components/pages/sale/giftLookDetail'
@@ -40,6 +41,9 @@ import theme from '@/components/pages/sale/theme'
 import news from '@/components/news'
 import newsList from '@/components/pages/news/newsList'
 import newsDetail from '@/components/pages/news/newsDetail'
+import manage from '@/components/manage'
+import invoiceList from '@/components/pages/manage/invoiceList'
+import invoiceAdd from '@/components/pages/manage/invoiceAdd'
 
 Vue.use(Router)
 let router = new Router({
@@ -248,6 +252,13 @@ let router = new Router({
       meta: {
         title: '大礼包'
       }
+    }, {    // 特惠组合详情
+      path: 'groupBuy/:groupId',
+      name: 'groupBuy',
+      component: groupBuy,
+      meta: {
+        title: '特惠组合'
+      }
     }, {    // 购买大礼包成功
       path: 'giftBuySuccess',
       name: 'giftBuySuccess',
@@ -317,10 +328,29 @@ let router = new Router({
         title: '黄雀快报'
       }
     }]
+  }, {
+    path: '/manage',
+    name: 'manage',
+    component: manage,
+    children: [{    // 发票列表
+      path: 'invoiceList',
+      name: 'invoiceList',
+      component: invoiceList,
+      meta: {
+        title: '发票列表'
+      }
+    }, {    // 发票新增
+      path: 'invoiceAdd',
+      name: 'invoiceAdd',
+      component: invoiceAdd,
+      meta: {
+        title: '发票新增'
+      }
+    }]
   }],
   mode: 'history'
 })
-    // 路由不匹配时会出现页面空白
+// 路由不匹配时会出现页面空白
 router.beforeEach((to, from, next) => {
   if (to.matched.length === 0) { // 如果未匹配到路由
     from.name ? next({

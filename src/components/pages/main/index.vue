@@ -98,8 +98,8 @@
 				<img src="https://hqwell.net/images/open_title01.png" class="item-img" />
 			</div>
 			<ul class="thzh-ul clearfix">
-				<li class="fl" v-for="(item,index) in groupList" v-cloak :key="index">
-					<a href="javascript:void(0)" @click="groupFun(item.comb_id)">
+				<li class="fl" v-for="(item,index) in groupList" v-cloak :key="index" @click="gotogroup(item.comb_id)">
+					<a href="javascript:void(0)" >
 						<div class="fl thzh-li-l">
 							<h3 v-text="item.comb_name"></h3>
 							<p v-text="item.comb_child_name"></p>
@@ -514,7 +514,7 @@ export default {
   },
   data () {
     return {
-      name: 'kaker',
+      name: 'index',
       tabShow: 0,
       stationName: '',
       banner_list: [
@@ -582,7 +582,7 @@ export default {
       this.stationName = stationName
     }
     let kb = {
-      station_id: 8,
+      station_id: stationId,
       type: 0,
       cat_id: 1
     }
@@ -595,6 +595,20 @@ export default {
           console.log('下一行是新闻信息')
           console.log(data.data)
           this.newsList = data.data
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    axios
+      .get('shop/v2/group', {
+        params: {'station_id': stationId}
+      })
+      .then(
+        data => {
+          console.log('下一行是特惠组合信息')
+          console.log(data.data)
+          this.groupList = data.data
         },
         err => {
           console.log(err)
@@ -617,6 +631,10 @@ export default {
     },
     gotoNews () {
       this.$router.push({path: '/news/newsList'})
+    },
+    gotogroup (id) {
+      console.log(id)
+      this.$router.push({path: '/sale/groupBuy/' + id})
     }
   }
 }
@@ -901,7 +919,8 @@ export default {
 }
 
 .thzh-ul {
-  width: 100%;
+	width: 100%;
+	overflow: hidden;
 }
 
 .thzh-ul li {

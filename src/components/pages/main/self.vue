@@ -67,7 +67,7 @@
 			<cell title="专属客服" is-link link="/" style='font-size: 13px;'></cell>
 		</group>
 		<group>
-			<cell title="发票管理" is-link link="/address" style='font-size: 13px;'></cell>
+			<cell title="发票管理" is-link link="/manage/invoiceList" style='font-size: 13px;'></cell>
 			<cell title="收货地址管理" is-link link="/server" style='font-size: 13px;'></cell>
 		</group>
 		<button @click="ck">点击登录</button>

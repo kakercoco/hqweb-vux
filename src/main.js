@@ -5,8 +5,9 @@ import FastClick from 'fastclick'
 import router from './router/'
 import App from './App'
 import store from './vuex/store'
+import { ConfirmPlugin } from 'vux'
 Vue.use(require('vue-wechat-title'))
-
+Vue.use(ConfirmPlugin)
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
