@@ -63,7 +63,7 @@
 			<cell title="售后/退货" is-link link="/order" style='font-size: 13px;'></cell>
 		</group>
 		<group>
-			<cell title="站点信息" is-link link="/car" style='font-size: 13px;'></cell>
+			<cell title="站点信息" is-link link="/manage/stationMessage" style='font-size: 13px;'></cell>
 			<cell title="专属客服" is-link link="/" style='font-size: 13px;'></cell>
 		</group>
 		<group>

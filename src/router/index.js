@@ -44,6 +44,8 @@ import newsDetail from '@/components/pages/news/newsDetail'
 import manage from '@/components/manage'
 import invoiceList from '@/components/pages/manage/invoiceList'
 import invoiceAdd from '@/components/pages/manage/invoiceAdd'
+import invoiceEdit from '@/components/pages/manage/invoiceEdit'
+import stationMessage from '@/components/pages/manage/stationMessage'
 
 Vue.use(Router)
 let router = new Router({
@@ -345,6 +347,20 @@ let router = new Router({
       component: invoiceAdd,
       meta: {
         title: '发票新增'
+      }
+    }, {    // 发票编辑
+      path: 'invoiceEdit/:invoiceId',
+      name: 'invoiceEdit',
+      component: invoiceEdit,
+      meta: {
+        title: '发票编辑'
+      }
+    }, {    // 站点信息
+      path: 'stationMessage',
+      name: 'stationMessage',
+      component: stationMessage,
+      meta: {
+        title: '站点信息'
       }
     }]
   }],

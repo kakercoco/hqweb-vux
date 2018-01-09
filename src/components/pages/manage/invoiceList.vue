@@ -12,7 +12,7 @@
             <b class="ml-10" >设为默认</b>
           </p> 
           <a href="javascript:void(0)" class="fr tac c-333 aman-remove" @click="deleteOne(1)">删除</a> 
-          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" >编辑</a>
+          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editInvoice(1)">编辑</a>
         </div>
       </li>
       <li class="mt-10">
@@ -26,7 +26,7 @@
             <b class="ml-10">设为默认</b>
           </p> 
           <a href="javascript:void(0)" class="fr tac c-333 aman-remove" @click="deleteOne(2)">删除</a> 
-          <a href="javascript:void(0)" class="fr tac c-333 aman-edit">编辑</a>
+          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editInvoice(2)">编辑</a>
         </div>
       </li>
     </ul>
@@ -63,6 +63,9 @@ export default {
     },
     addInvoice () {
       this.$router.push({path: '/manage/invoiceAdd'})
+    },
+    editInvoice (id) {
+      this.$router.push({path: '/manage/invoiceEdit/' + id})
     }
   }
 }
