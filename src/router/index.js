@@ -46,6 +46,10 @@ import invoiceList from '@/components/pages/manage/invoiceList'
 import invoiceAdd from '@/components/pages/manage/invoiceAdd'
 import invoiceEdit from '@/components/pages/manage/invoiceEdit'
 import stationMessage from '@/components/pages/manage/stationMessage'
+import addressList from '@/components/pages/manage/addressList'
+import addressEdit from '@/components/pages/manage/addressEdit'
+import addressAdd from '@/components/pages/manage/addressAdd'
+import ticketList from '@/components/pages/manage/ticketList'
 
 Vue.use(Router)
 let router = new Router({
@@ -361,6 +365,34 @@ let router = new Router({
       component: stationMessage,
       meta: {
         title: '站点信息'
+      }
+    }, {    // 收货地址管理
+      path: 'addressList',
+      name: 'addressList',
+      component: addressList,
+      meta: {
+        title: '收货地址管理'
+      }
+    }, {    // 收货地址新增
+      path: 'addressAdd',
+      name: 'addressAdd',
+      component: addressAdd,
+      meta: {
+        title: '收货地址新增'
+      }
+    }, {    // 收货地址编辑
+      path: 'addressEdit/:addressId',
+      name: 'addressEdit',
+      component: addressEdit,
+      meta: {
+        title: '收货地址编辑'
+      }
+    }, {    // 优惠券列表
+      path: 'ticketList',
+      name: 'ticketList',
+      component: ticketList,
+      meta: {
+        title: '优惠券'
       }
     }]
   }],

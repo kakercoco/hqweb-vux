@@ -29,10 +29,10 @@
 						</a>
 					</li>
 					<li>
-						<a href="myquan.html">
+						<router-link to="/manage/ticketList" tag="a">
 							<b v-cloak>{{data.total_coupon}}</b><br />
 							<span>优惠券</span>
-						</a>
+						</router-link>
 					</li>
 				</ul>
 			</div>
@@ -68,7 +68,7 @@
 		</group>
 		<group>
 			<cell title="发票管理" is-link link="/manage/invoiceList" style='font-size: 13px;'></cell>
-			<cell title="收货地址管理" is-link link="/server" style='font-size: 13px;'></cell>
+			<cell title="收货地址管理" is-link link="/manage/addressList" style='font-size: 13px;'></cell>
 		</group>
 		<button @click="ck">点击登录</button>
 	</div>

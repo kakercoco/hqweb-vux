@@ -3,8 +3,8 @@
     <ul>
       <li class="mt-10">
         <div class="aman-top b-b1">
-          <h4>普通发票<span class="ml-20">个人</span></h4>
-          <p class="mt-10">收票人手机号:15670520667</p>
+          <h4>许天星<span class="ml-20">15670520667</span></h4>
+          <p class="mt-10">上海市杨浦区as</p>
         </div> 
         <div class="aman-btm">
           <p class="fl amanbm-dg">
@@ -12,13 +12,13 @@
             <b class="ml-10" >设为默认</b>
           </p> 
           <a href="javascript:void(0)" class="fr tac c-333 aman-remove" @click="deleteOne(1)">删除</a> 
-          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editInvoice(1)">编辑</a>
+          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editAddress(1)">编辑</a>
         </div>
       </li>
       <li class="mt-10">
         <div class="aman-top b-b1">
-          <h4>普通发票<span class="ml-20">个人</span></h4>
-          <p class="mt-10">收票人手机号:15670520667</p>
+          <h4>许天星<span class="ml-20">15670520667</span></h4>
+          <p class="mt-10">上海市杨浦区as</p>
         </div> 
         <div class="aman-btm">
           <p class="fl amanbm-dg">
@@ -26,11 +26,11 @@
             <b class="ml-10">设为默认</b>
           </p> 
           <a href="javascript:void(0)" class="fr tac c-333 aman-remove" @click="deleteOne(2)">删除</a> 
-          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editInvoice(2)">编辑</a>
+          <a href="javascript:void(0)" class="fr tac c-333 aman-edit" @click="editAddress(2)">编辑</a>
         </div>
       </li>
     </ul>
-    <div class="addr3" @click="addInvoice"><p><span class="fl">+</span>新增发票地址</p></div>
+    <div class="addr3" @click="addAddress"><p><span class="fl">+</span>新增发票地址</p></div>
   </div>
 </template>
 <script>
@@ -49,7 +49,7 @@ export default {
     deleteOne (id) {
       const _this = this // 需要注意 onCancel 和 onConfirm 的 this 指向
       this.$vux.confirm.show({
-        title: '确认删除此发票?',
+        title: '确认删除此地址?',
         // 组件除show外的属性
         onCancel () {
           console.log('已取消')
@@ -61,11 +61,11 @@ export default {
         }
       })
     },
-    addInvoice () {
-      this.$router.push({path: '/manage/invoiceAdd'})
+    addAddress () {
+      this.$router.push({path: '/manage/addressAdd'})
     },
-    editInvoice (id) {
-      this.$router.push({path: '/manage/invoiceEdit/' + id})
+    editAddress (id) {
+      this.$router.push({path: '/manage/addressEdit/' + id})
     }
   }
 }
