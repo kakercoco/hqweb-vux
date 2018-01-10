@@ -50,6 +50,18 @@ import addressList from '@/components/pages/manage/addressList'
 import addressEdit from '@/components/pages/manage/addressEdit'
 import addressAdd from '@/components/pages/manage/addressAdd'
 import ticketList from '@/components/pages/manage/ticketList'
+import order from '@/components/order'
+import orderAll from '@/components/pages/order/orderAll'
+import orderUnpay from '@/components/pages/order/orderUnpay'
+import orderUnsend from '@/components/pages/order/orderUnsend'
+import orderUnreceive from '@/components/pages/order/orderUnreceive'
+import orderOver from '@/components/pages/order/orderOver'
+import orderCancel from '@/components/pages/order/orderCancel'
+import orderNone from '@/components/pages/order/orderNone'
+import orderDetail from '@/components/pages/order/orderDetail'
+import orderServiceList from '@/components/pages/order/orderServiceList'
+import orderServiceDetail from '@/components/pages/order/orderServiceDetail'
+import returnGoods from '@/components/pages/order/returnGoods'
 
 Vue.use(Router)
 let router = new Router({
@@ -393,6 +405,88 @@ let router = new Router({
       component: ticketList,
       meta: {
         title: '优惠券'
+      }
+    }]
+  }, {    // 订单
+    path: '/order',
+    name: 'order',
+    component: order,
+    children: [{
+      path: 'orderAll',
+      name: 'orderAll',
+      component: orderAll,
+      meta: {
+        title: '全部订单'
+      }
+    }, {    // 代付款订单
+      path: 'orderUnpay',
+      name: 'orderUnpay',
+      component: orderUnpay,
+      meta: {
+        title: '代付款订单'
+      }
+    }, {    // 代发货订单
+      path: 'orderUnsend',
+      name: 'orderUnsend',
+      component: orderUnsend,
+      meta: {
+        title: '代发货订单'
+      }
+    }, {    // 待收货订单
+      path: 'orderUnreceive',
+      name: 'orderUnreceive',
+      component: orderUnreceive,
+      meta: {
+        title: '待收货订单'
+      }
+    }, {    // 已取消订单
+      path: 'orderOver',
+      name: 'orderOver',
+      component: orderOver,
+      meta: {
+        title: '已完成订单'
+      }
+    }, {    // 已取消订单
+      path: 'orderCancel',
+      name: 'orderCancel',
+      component: orderCancel,
+      meta: {
+        title: '已取消订单'
+      }
+    }, {    // 订单为空
+      path: 'orderNone',
+      name: 'orderNone',
+      component: orderNone,
+      meta: {
+        title: '无订单'
+      }
+    }, {    // 订单详情
+      path: 'orderDetail/:orderId',
+      name: 'orderDetail',
+      component: orderDetail,
+      meta: {
+        title: '订单详情'
+      }
+    }, {    // 售后服务列表
+      path: 'orderServiceList',
+      name: 'orderServiceList',
+      component: orderServiceList,
+      meta: {
+        title: '售后服务'
+      }
+    }, {    // 售后服务详情
+      path: 'orderServiceDetail/:orderId',
+      name: 'orderServiceDetail',
+      component: orderServiceDetail,
+      meta: {
+        title: '售后服务'
+      }
+    }, {    // 退货申请
+      path: 'returnGoods/:orderId',
+      name: 'returnGoods',
+      component: returnGoods,
+      meta: {
+        title: '退货申请'
       }
     }]
   }],

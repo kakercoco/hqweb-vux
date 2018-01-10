@@ -38,29 +38,29 @@
 			</div>
 		</div>
 		<group>
-			<cell title="全部订单" is-link link="/order" value="查看全部订单" style='font-size: 13px;'>
+			<cell title="全部订单" is-link link="/order/orderAll" value="查看全部订单" style='font-size: 13px;'>
 			</cell>
 		</group>
 		<grid class="bg-fff total" :cols=5>
-			<grid-item label="待付款" link="/main/index" class="my-grid__label">
+			<grid-item label="待付款" link="/order/orderUnpay" class="my-grid__label">
 				<img slot="icon" src="https://hqwell.net/images/total_dfk.png">
 			</grid-item>
-			<grid-item label="待发货" link="/setting/data">
+			<grid-item label="待发货" link="/order/orderUnsend">
 				<img slot="icon" src="https://hqwell.net/images/total_dfh.png">
 			</grid-item>
-			<grid-item label="待收货">
+			<grid-item label="待收货" link="/order/orderUnreceive">
 				<img slot="icon" src="https://hqwell.net/images/total_dsh.png">
 			</grid-item>
-			<grid-item label="已完成">
+			<grid-item label="已完成" link="/order/orderOVer">
 				<img slot="icon" src="https://hqwell.net/images/total_ywc.png">
 			</grid-item>
-			<grid-item label="已取消">
+			<grid-item label="已取消" link="/order/orderCancel">
 				<img slot="icon" src="https://hqwell.net/images/total_yqx.png">
 				<span>12</span>
 			</grid-item>
 		</grid>
 		<group>
-			<cell title="售后/退货" is-link link="/order" style='font-size: 13px;'></cell>
+			<cell title="售后/退货" is-link link="/order/orderServiceList" style='font-size: 13px;'></cell>
 		</group>
 		<group>
 			<cell title="站点信息" is-link link="/manage/stationMessage" style='font-size: 13px;'></cell>

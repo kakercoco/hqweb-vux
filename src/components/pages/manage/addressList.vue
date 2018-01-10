@@ -30,7 +30,7 @@
         </div>
       </li>
     </ul>
-    <div class="addr3" @click="addAddress"><p><span class="fl">+</span>新增发票地址</p></div>
+    <div class="addr3" @click="addAddress"><p><span class="fl">+</span>新增收货地址</p></div>
   </div>
 </template>
 <script>
