@@ -6,7 +6,6 @@ import sort from '@/components/pages/main/sort'
 import car from '@/components/pages/main/car'
 import self from '@/components/pages/main/self'
 import sortList from '@/components/pages/main/sortList'
-import produce from '@/components/pages/produce'
 import login from '@/components/login'
 import loginIndex from '@/components/pages/login/login'
 import findPassword from '@/components/pages/login/findPassword'
@@ -112,13 +111,6 @@ let router = new Router({
         title: '购物车'
       }
     }]
-  }, { // 产品详情
-    path: '/produce',
-    name: 'produce',
-    component: produce,
-    meta: {
-      title: '产品详情'
-    }
   }, { // 登录页面
     path: '/login',
     name: 'login',
