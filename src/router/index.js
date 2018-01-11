@@ -62,6 +62,9 @@ import orderDetail from '@/components/pages/order/orderDetail'
 import orderServiceList from '@/components/pages/order/orderServiceList'
 import orderServiceDetail from '@/components/pages/order/orderServiceDetail'
 import returnGoods from '@/components/pages/order/returnGoods'
+import goods from '@/components/goods'
+import goodsDetail from '@/components/pages/goods/goodsDetail'
+import hotDetail from '@/components/pages/goods/hotDetail'
 
 Vue.use(Router)
 let router = new Router({
@@ -487,6 +490,25 @@ let router = new Router({
       component: returnGoods,
       meta: {
         title: '退货申请'
+      }
+    }]
+  }, {
+    path: '/goods',
+    name: 'goods',
+    component: goods,
+    children: [{    // 商品详情
+      path: 'goodsDetail/:goodsId',
+      name: 'goodsDetail',
+      component: goodsDetail,
+      meta: {
+        title: '商品详情'
+      }
+    }, {    // 爆款详情
+      path: 'hotDetail/:goodsId',
+      name: 'hotDetail',
+      component: hotDetail,
+      meta: {
+        title: '爆款详情'
       }
     }]
   }],

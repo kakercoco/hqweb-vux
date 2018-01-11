@@ -47,20 +47,20 @@
 		<div class="no-xl mt-5">
 			<ul>
 				<li class="fr">
-					<a href="javasrcipt:void(0)"></a>
+					<a href="javasrcipt:void(0)" @click="gotoGoods(123)"></a>
 				</li>
 				<li class="fr">
-					<a href="javasrcipt:void(0)"></a>
+					<a href="javasrcipt:void(0)" @click="gotoGoods(123)"></a>
 				</li>
 				<li class="fr">
-					<a href="javasrcipt:void(0)"></a>
+					<a href="javasrcipt:void(0)" @click="gotoGoods(123)"></a>
 				</li>
 			</ul>
 		</div>
 		<!--商品分类start-->
 		<div class="buy-bk">
-			<div class="bk-l fl bg-fff" id="testId">
-				<a href="myhome/produce.html?id=228">
+			<div class="bk-l fl bg-fff">
+				<a href="javasrcipt:void(0)" @click="gotoHot(115)">
 					<img src="https://hqwell.net/images/bk_logo.png" class="bk_logo" />
 					<div class="bk-ll fl">
 						<p>护舒宝丝薄日用</p>
@@ -83,7 +83,7 @@
 				</a>
 			</div>
 			<div class="bk-r fr bg-fff">
-				<a href="myhome/produce.html?id=317">
+				<a href="javasrcipt:void(0)" @click="gotoHot(412)">
 					<p class="mt-10">达利园 蛋黄牌</p>
 					<p>劲爆价 6.0折</p>
 					<img src="https://hqwell.net/images/hot-pro2.png" />
@@ -114,28 +114,28 @@
 			</ul>
 			<ul class="thzh-ul-two">
 				<li class="fl">
-					<a href="myhome/produce.html?id=229">
+					<a href="javasrcipt:void(0)" @click="gotoGoods(123)">
 						<p class="tac">护舒宝丝薄</p>
 						<span class="tac">￥8.80</span>
 						<img src="https://hqwell.net/images/hot-item1.png" alt="" />
 					</a>
 				</li>
 				<li class="fl">
-					<a href="myhome/produce.html?id=272">
+					<a href="javasrcipt:void(0)" @click="gotoGoods(120)">
 						<p class="tac">麻辣鲜</p>
 						<span class="tac">￥2.50</span>
 						<img src="https://hqwell.net/images/hot-item2.png" alt="" />
 					</a>
 				</li>
 				<li class="fl">
-					<a href="myhome/produce.html?id=83">
+					<a href="javasrcipt:void(0)" @click="gotoGoods(119)">
 						<p class="tac">高露洁牙膏</p>
 						<span class="tac">￥3.80</span>
 						<img src="https://hqwell.net/images/hot-item3.png" alt="" />
 					</a>
 				</li>
 				<li class="fl">
-					<a href="myhome/produce.html?id=196">
+					<a href="javasrcipt:void(0)" @click="gotoGoods(456)">
 						<p class="tac">妙洁保鲜袋</p>
 						<span class="tac">￥5.50</span>
 						<img src="https://hqwell.net/images/hot-item4.png" alt="" />
@@ -635,6 +635,12 @@ export default {
     gotogroup (id) {
       console.log(id)
       this.$router.push({path: '/sale/groupBuy/' + id})
+    },
+    gotoGoods (id) {
+      this.$router.push({path: '/goods/goodsDetail/' + id})
+    },
+    gotoHot (id) {
+      this.$router.push({path: '/goods/hotDetail/' + id})
     }
   }
 }
