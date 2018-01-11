@@ -21,7 +21,7 @@
               <p>2018-01-04 13:44:43</p>
             </div>
             <div class="orderlist-status">
-              <button>申请退货</button>
+              <button @click="gotoReturn(2)">申请退货</button>
               <button>查看物流</button>
               <button>取消订单</button>
               <button>确认收货</button>
@@ -45,7 +45,7 @@
               <p>2018-01-04 13:44:43</p>
             </div>
             <div class="orderlist-status">
-              <button>申请退货</button>
+              <button @click="gotoReturn(3)">申请退货</button>
               <button>查看物流</button>
               <button>取消订单</button>
               <button>确认收货</button>
@@ -69,7 +69,7 @@
               <p>2018-01-04 13:44:43</p>
             </div>
             <div class="orderlist-status">
-              <button>申请退货</button>
+              <button @click="gotoReturn(8)">申请退货</button>
               <button>查看物流</button>
               <button>取消订单</button>
               <button>确认收货</button>
@@ -109,6 +109,9 @@ export default {
         this.$refs.scroller.donePullup()  // 设置pullup完成
         this.$refs.scroller.disablePullup() // 数据加载完成禁用pullup
       }, 2000)
+    },
+    gotoReturn (id) {
+      this.$router.push({path: '/order/returnGoods/' + id})
     }
   }
 }

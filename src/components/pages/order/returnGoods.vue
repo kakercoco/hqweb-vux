@@ -75,7 +75,7 @@
     <div class="return-detail">
       <h5>问题描述</h5>
       <group>
-        <x-textarea height=100 placeholder="选择其他原因时可输入" v-model="textarea" show-counter :max=100></x-textarea>
+        <x-textarea :height=100 placeholder="选择其他原因时可输入" v-model="textarea" show-counter :max=100></x-textarea>
       </group>
     </div>
     <div class="user-upbtn mt-10">
